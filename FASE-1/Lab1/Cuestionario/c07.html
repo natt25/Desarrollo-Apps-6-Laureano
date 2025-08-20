@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Formulario con validaciones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <main>
+    <h1>Formulario con validaciones</h1>
+
+    <form action="/enviar" method="post" autocomplete="on">
+      <div>
+        <label for="nombre">Nombre:</label>
+        <input id="nombre" name="nombre" type="text"
+               required
+               pattern="^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]+$"
+               minlength="2" maxlength="60"
+               title="Escribe solo letras y espacios (mínimo 2 caracteres)">
+      </div>
+
+      <div>
+        <label for="correo">Correo electrónico:</label>
+        <input id="correo" name="correo" type="email"
+               required
+               placeholder="ejemplo@correo.com">
+      </div>
+
+      <div>
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" rows="5"
+                  required minlength="10" maxlength="500"
+                  placeholder="Escribe tu mensaje (mínimo 10 caracteres)"></textarea>
+      </div>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </main>
+</body>
+</html>

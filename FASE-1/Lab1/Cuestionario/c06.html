@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Contacto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <header>
+    <h1>Contacto</h1>
+  </header>
+
+  <main>
+    <section aria-labelledby="titulo-form">
+      <h2 id="titulo-form">Envíanos un mensaje</h2>
+
+      <form action="/mi-endpoint" method="post" autocomplete="on">
+        <fieldset>
+          <legend>Datos del contacto</legend>
+
+          <div>
+            <label for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text">
+          </div>
+
+          <div>
+            <label for="correo">Correo electrónico</label>
+            <input id="correo" name="correo" type="email">
+          </div>
+
+          <div>
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="5"></textarea>
+          </div>
+        </fieldset>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+</body>
+</html>
