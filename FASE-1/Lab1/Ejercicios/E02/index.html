@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registro — Formulario con validación (HTML5)</title>
+  <meta name="description" content="Formulario de registro con validación HTML5 usando required, pattern, minlength y maxlength." />
+</head>
+<body>
+  <h1>Crear cuenta</h1>
+  <p>Los campos marcados con * son obligatorios.</p>
+
+  <!-- Validación -->
+  <form action="/registro" method="post" autocomplete="on">
+    <fieldset>
+      <legend>Datos de la cuenta</legend>
+
+      <!-- NOMBRE -->
+      <div>
+        <label for="nombre">Nombre completo *</label><br>
+        <input
+          id="nombre" name="nombre" type="text"
+          placeholder="Tu nombre y apellidos"
+          required minlength="2" maxlength="60"
+          pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ ]{2,60}$"
+          aria-describedby="ayuda-nombre"
+          title="Usa solo letras y espacios, entre 2 y 60 caracteres."
+          autocomplete="name">
+        <small id="ayuda-nombre">Solo letras y espacios (2–60).</small>
+      </div>
+
+      <!-- USUARIO -->
+      <div>
+        <label for="usuario">Usuario *</label><br>
+        <input
+          id="usuario" name="usuario" type="text"
+          placeholder="ej. natty_l"
+          required minlength="4" maxlength="16"
+          pattern="^[a-zA-Z0-9_]{4,16}$"
+          aria-describedby="ayuda-usuario"
+          title="4–16 caracteres. Solo letras, números y guion bajo (_)."
+          autocomplete="username">
+        <small id="ayuda-usuario">4–16, letras/números/_</small>
+      </div>
+
+      <!-- CORREO -->
+      <div>
+        <label for="email">Correo electrónico *</label><br>
+        <input
+          id="email" name="email" type="email"
+          placeholder="tucorreo@ejemplo.com"
+          required maxlength="100"
+          aria-describedby="ayuda-email"
+          title="Introduce un correo válido (ej. nombre@dominio.com)."
+          autocomplete="email">
+        <small id="ayuda-email">Formato: nombre@dominio.com</small>
+      </div>
+
+      <!-- CONTRASEÑA -->
+      <div>
+        <label for="password">Contraseña *</label><br>
+        <input
+          id="password" name="password" type="password"
+          placeholder="••••••••"
+          required minlength="8" maxlength="32"
+          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,32}$"
+          aria-describedby="ayuda-pass"
+          title="8–32 caracteres, al menos 1 letra y 1 número. Sin espacios."
+          autocomplete="new-password">
+        <small id="ayuda-pass">8–32, mínimo 1 letra y 1 número.</small>
+      </div>
+
+      <!-- TELEFONO -->
+      <div>
+        <label for="tel">Teléfono (opcional)</label><br>
+        <input
+          id="tel" name="tel" type="tel"
+          placeholder="Solo dígitos (ej. 999111333)"
+          pattern="^\d{9,15}$"
+          aria-describedby="ayuda-tel"
+          title="Solo dígitos. De 9 a 15 caracteres."
+          inputmode="numeric"
+          autocomplete="tel">
+        <small id="ayuda-tel">Solo dígitos (9–15).</small>
+      </div>
+
+      <!-- TERMINOS -->
+      <div>
+        <input id="acepto" name="acepto" type="checkbox" required>
+        <label for="acepto">Acepto los términos y condiciones *</label>
+      </div>
+
+      <div>
+        <button type="submit">Crear cuenta</button>
+        <button type="reset">Limpiar</button>
+      </div>
+    </fieldset>
+  </form>
+
+</body>
+</html>
