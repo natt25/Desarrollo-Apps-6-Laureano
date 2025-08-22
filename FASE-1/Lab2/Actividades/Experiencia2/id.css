@@ -1,0 +1,22 @@
+/* SOLO selectores por ID (sin clases ni etiquetas) */
+#body { margin: 0; padding: 0; font: 16px/1.6 system-ui, sans-serif; }
+#header { border-bottom: 1px solid #e5e5e5; background: #fafafa; padding: 12px 16px; }
+#titulo { margin: 6px 0 8px; font-size: 24px; }
+
+#nav {}
+#menu { margin: 0; padding: 0; list-style: none; display: flex; gap: 12px; }
+#item1, #item2, #item3 {}
+#link1, #link2, #link3 { text-decoration: none; color: #1e40af; }
+#link1:hover, #link2:hover, #link3:hover { text-decoration: underline; }
+
+#main { padding: 16px; }
+#acerca, #servicios, #contacto { margin-bottom: 16px; border-bottom: 1px solid #eee; padding-bottom: 12px; }
+#subtitulo-acerca, #subtitulo-servicios, #subtitulo-contacto { margin: 0 0 8px; font-size: 20px; }
+#subsubtitulo-objetivo { margin: 10px 0 6px; font-size: 18px; }
+#p1, #p2, #p3 { margin: 0 0 8px; }
+#lista-servicios { margin: 0 0 8px 18px; }
+#serv1, #serv2, #serv3 { margin: 4px 0; }
+#fuerte { font-weight: 700; }
+
+#footer { border-top: 1px solid #e5e5e5; background: #fafafa; padding: 12px 16px; color: #555; }
+#legal {}

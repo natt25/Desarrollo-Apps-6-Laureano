@@ -1,0 +1,16 @@
+/* SOLO selectores por NOMBRE (etiqueta) */
+html, body { margin: 0; padding: 0; font: 16px/1.6 system-ui, sans-serif; }
+header { border-bottom: 1px solid #e5e5e5; background: #fafafa; padding: 12px 16px; }
+h1 { margin: 6px 0 8px; font-size: 24px; }
+nav ul { margin: 0; padding: 0; list-style: none; display: flex; gap: 12px; }
+nav a { text-decoration: none; color: #1e40af; }
+nav a:hover { text-decoration: underline; }
+
+main { padding: 16px; }
+section { margin-bottom: 16px; border-bottom: 1px solid #eee; padding-bottom: 12px; }
+h2 { margin: 0 0 8px; font-size: 20px; }
+h3 { margin: 10px 0 6px; font-size: 18px; }
+p { margin: 0 0 8px; }
+ul { margin: 0 0 8px 18px; }
+
+footer { border-top: 1px solid #e5e5e5; background: #fafafa; padding: 12px 16px; color: #555; }
