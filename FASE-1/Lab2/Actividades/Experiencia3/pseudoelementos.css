@@ -1,0 +1,24 @@
+/* 1) Primera línea y 2) primera letra */
+.intro::first-line { text-transform: uppercase; }
+.intro::first-letter { font-size: 180%; font-weight: 700; }
+
+/* 3) Selección de texto (aplica globalmente) */
+::selection { background: #fde68a; }
+
+/* 4) Marcadores de lista */
+.marcada li::marker { content: "• "; color: #1e40af; }
+
+/* 5) Placeholder en inputs */
+input::placeholder { color: #9ca3af; }
+
+/* 6) Contenido generado antes */
+.nota::before {
+  content: "ℹ️ ";
+  font-weight: 700;
+}
+
+/* 7) Contenido generado después */
+.cta::after {
+  content: " →";
+  font-weight: 700;
+}

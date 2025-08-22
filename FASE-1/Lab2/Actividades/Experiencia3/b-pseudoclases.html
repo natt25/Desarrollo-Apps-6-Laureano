@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pseudo-clases – Interacción y estado</title>
+  <link rel="stylesheet" href="pseudoclases.css">
+</head>
+<body>
+  <header>
+    <h1>Sitio de ejemplo</h1>
+    <nav>
+      <a href="#acerca">Acerca</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="acerca">
+      <h2>Acerca</h2>
+      <p>Primer párrafo.</p>
+      <p>Segundo párrafo.</p>
+      <p>Último párrafo.</p>
+      <ul>
+        <li>Ítem 1</li>
+        <li>Ítem 2</li>
+        <li>Ítem 3</li>
+        <li>Ítem 4</li>
+      </ul>
+    </section>
+
+    <section id="servicios">
+      <h2>Servicios</h2>
+      <form>
+        <label>Correo
+          <input type="email" required placeholder="tucorreo@ejemplo.com" />
+        </label>
+        <label>Contraseña
+          <input type="password" required minlength="8" />
+        </label>
+        <label>
+          <input type="checkbox" required /> Acepto términos
+        </label>
+        <button type="submit">Enviar</button>
+        <button type="button" disabled>Deshabilitado</button>
+      </form>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p><a href="#contacto">Enlace interno (target)</a></p>
+      <p class="nota">Este elemento servirá para :not()</p>
+    </section>
+  </main>
+</body>
+</html>

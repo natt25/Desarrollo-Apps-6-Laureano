@@ -1,0 +1,33 @@
+/* Enlaces: link/visited/hover/active */
+a:link { color: #1e40af; }
+a:visited { color: #6b21a8; }
+a:hover { text-decoration: underline; }
+a:active { color: #dc2626; }
+
+/* Enfoque */
+input:focus { outline: 2px solid #2563eb; }
+
+/* Validación de formularios */
+input:required { border: 1px solid #e5e7eb; }
+input:valid { border-color: #16a34a; }
+input:invalid { border-color: #dc2626; }
+
+/* Checkbox marcado */
+input[type="checkbox"]:checked { outline: 2px dashed #16a34a; }
+
+/* Estados de controles */
+button:disabled { opacity: .6; }
+
+/* Posición estructural */
+p:first-child { font-weight: 700; }
+p:last-child { font-style: italic; }
+li:nth-child(odd) { background: #f8fafc; }
+li:nth-child(even) { background: #f1f5f9; }
+
+/* Negación */
+section :not(.nota) { /* todo dentro de section que NO tenga .nota */
+  /* regla de demostración suave */
+}
+
+/* Anclaje destino */
+:target { scroll-margin-top: 8px; }

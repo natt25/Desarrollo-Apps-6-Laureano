@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Atributos – Selectores de atributo</title>
+  <link rel="stylesheet" href="atributos.css">
+</head>
+<body>
+  <header>
+    <h1 data-rol="titulo">Sitio de ejemplo</h1>
+    <nav>
+      <ul>
+        <li><a href="/" title="Ir al inicio">Inicio</a></li>
+        <li><a href="docs/guia.pdf" target="_blank">Manual (PDF)</a></li>
+        <li><a href="https://developer.mozilla.org/es/" target="_blank">Documentación (MDN)</a></li>
+        <li><a href="https://seguro.ejemplo.com/app" target="_blank">Área segura (HTTPS)</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section lang="es-PE">
+      <h2 class="tag destacado">Sección con atributos</h2>
+      <p title="Párrafo con title">Este párrafo tiene atributo <code>title</code> para probar selectores.</p>
+
+      <form action="/registrar" method="post">
+        <label>Correo
+          <input type="email" name="email" placeholder="tucorreo@ejemplo.com" autocomplete="email">
+        </label>
+        <label>Usuario
+          <input type="text" name="user" placeholder="nombre_de_usuario">
+        </label>
+        <button type="submit" data-rol="cta">Enviar</button>
+      </form>
+
+      <figure>
+        <img src="logo.png" alt="Logotipo de ejemplo" width="120" height="120">
+        <figcaption>Imagen con atributo <code>alt</code>.</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <footer>
+    <small data-rol="legal">© 2025</small>
+  </footer>
+</body>
+</html>

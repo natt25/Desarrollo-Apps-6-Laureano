@@ -1,0 +1,28 @@
+/* Presencia de atributo */
+[title] { outline: 2px dashed #bbb; }
+
+/* Por nombre/valor exacto */
+a[target="_blank"] { text-decoration: underline; }
+
+/* Comienza con, termina con, contiene */
+a[href^="https"] { color: #1e40af; }
+a[href$=".pdf"] { color: #b45309; }
+a[href*="mozilla"] { font-weight: 700; }
+
+/* Token en class (class~="destacado") */
+[class~="destacado"] { background: #fff7ed; }
+
+/* Idioma (lang|="es") */
+[lang|="es"] { border: 1px solid #e5e5e5; padding: 8px; }
+
+/* Inputs por tipo y presencia de placeholder */
+input[type="email"] { border: 1px solid #2563eb; }
+input[placeholder] { background: #f8fafc; }
+
+/* Atributo data personalizado */
+[data-rol="cta"] { background: #2563eb; color: #fff; border: 0; padding: 6px 10px; }
+[data-rol="titulo"] { letter-spacing: .5px; }
+[data-rol="legal"] { color: #666; }
+
+/* Imagen con alt */
+img[alt] { border: 1px solid #e5e5e5; padding: 4px; }
