@@ -1,0 +1,13 @@
+*{box-sizing:border-box} html,body{margin:0;padding:0;font:16px/1.5 system-ui,Arial,sans-serif}
+header,main,section{padding:12px 16px}
+.fila{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+.box{min-width:160px;min-height:64px;border:1px solid #e5e5e5;display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+
+/* casos */
+.hex-1{background:#FF5733}  /* naranja rojizo */
+.hex-2{background:#1E40AF}  /* azul */
+.hex-3{background:#22C55E}  /* verde */
+.hex-4{background:#F59E0B}  /* ámbar */
+.hex-5{background:#6B7280}  /* gris */
+.hex-6{background:#0EA5E9}  /* celeste */
+.hex-short{background:#0af}  /* #00aaff */

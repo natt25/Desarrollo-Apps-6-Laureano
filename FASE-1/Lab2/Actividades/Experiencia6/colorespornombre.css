@@ -1,0 +1,12 @@
+*{box-sizing:border-box} html,body{margin:0;padding:0;font:16px/1.5 system-ui,Arial,sans-serif}
+header,main,section{padding:12px 16px}
+.fila{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+.box{min-width:140px;min-height:64px;border:1px solid #e5e5e5;display:flex;align-items:center;justify-content:center;font-weight:600}
+
+/* casos */
+.nombre-red{background:red;color:white}
+.nombre-royalblue{background:royalblue;color:white}
+.nombre-seagreen{background:seagreen;color:white}
+.nombre-gold{background:gold;color:#111}
+.nombre-indigo{background:indigo;color:white}
+.nombre-slategray{background:slategray;color:white}

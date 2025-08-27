@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Colores con opacidad (alpha)</title>
+  <link rel="stylesheet" href="coloresopacidad.css">
+</head>
+<body>
+  <header>
+    <h1>Colores con opacidad</h1>
+    <p>Ejemplos con <code>rgba()</code>, <code>hsla()</code>, <code>#RRGGBBAA</code> y <code>opacity</code>.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>rgba()</h2>
+      <div class="fila bg">
+        <div class="box rgba-1">rgba(30, 64, 175, 0.25)</div>
+        <div class="box rgba-2">rgba(34, 197, 94, 0.5)</div>
+        <div class="box rgba-3">rgba(245, 158, 11, 0.75)</div>
+      </div>
+
+      <h2>hsla()</h2>
+      <div class="fila bg">
+        <div class="box hsla-1">hsla(221, 70%, 40%, .3)</div>
+        <div class="box hsla-2">hsla(142, 71%, 45%, .6)</div>
+        <div class="box hsla-3">hsla(12, 90%, 58%, .85)</div>
+      </div>
+
+      <h2>#RRGGBBAA (hex con alfa)</h2>
+      <div class="fila bg">
+        <div class="box hexa-1">#1E40AF40</div>
+        <div class="box hexa-2">#22C55E99</div>
+        <div class="box hexa-3">#F59E0BDD</div>
+      </div>
+
+      <h2>opacity (sobre el elemento)</h2>
+      <div class="fila bg">
+        <div class="box op-1">opacity: .3</div>
+        <div class="box op-2">opacity: .6</div>
+        <div class="box op-3">opacity: .85</div>
+      </div>
+    </section>
+  </main>
+
+  <footer><small>© 2025</small></footer>
+</body>
+</html>
