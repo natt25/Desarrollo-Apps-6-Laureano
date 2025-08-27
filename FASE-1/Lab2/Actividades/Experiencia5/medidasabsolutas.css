@@ -1,0 +1,44 @@
+/* Presentación mínima para distinguir cajas; enfoque: UNIDADES */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font:16px/1.5 system-ui,Arial,sans-serif}
+header,main,section{padding:12px 16px}
+h1{margin:6px 0 8px;font-size:22px}
+h2{margin:10px 0 8px;font-size:18px}
+.nota{color:#555;margin:6px 0 10px}
+
+.fila{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 12px}
+.box{
+  display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid #e0e0e0;background:#f8f8f8;text-align:center;
+  padding:6px
+}
+
+/* px */
+.px-1{width:80px;height:40px;font-size:14px}
+.px-2{width:120px;height:60px;font-size:18px}
+.px-3{width:160px;height:80px;font-size:22px}
+
+/* cm */
+.cm-1{width:3cm;height:1.5cm}
+.cm-2{width:4cm;height:2cm}
+.cm-3{width:5cm;height:2.5cm}
+
+/* mm */
+.mm-1{width:30mm;height:15mm}
+.mm-2{width:40mm;height:20mm}
+.mm-3{width:50mm;height:25mm}
+
+/* in */
+.in-1{width:1.5in;height:.8in}
+.in-2{width:2in;height:1in}
+.in-3{width:2.5in;height:1.2in}
+
+/* pt (tipografía) */
+.pt-1{font-size:12pt;width:180px;height:48px}
+.pt-2{font-size:18pt;width:220px;height:60px}
+.pt-3{font-size:24pt;width:260px;height:72px}
+
+/* pc (picas => 1pc = 12pt ≈ 1/6 in) */
+.pc-1{width:10pc;height:48px}
+.pc-2{width:12pc;height:48px}
+.pc-3{width:14pc;height:48px}

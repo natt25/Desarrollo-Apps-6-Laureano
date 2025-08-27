@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Medidas relativas (em, rem, %, vw, vh)</title>
+  <link rel="stylesheet" href="medidasrelativas.css">
+</head>
+<body>
+  <header>
+    <h1>Medidas relativas</h1>
+    <p>Dependen del contexto (fuente base, contenedor o viewport)</p>
+  </header>
+
+  <main>
+    <!-- Contexto base para em -->
+    <section class="ctx-em">
+      <h2>em (relativo al font-size del elemento padre)</h2>
+      <div class="fila">
+        <div class="caja em-1">width: 10em</div>
+        <div class="caja em-2">width: 15em</div>
+        <div class="caja em-3">width: 20em</div>
+      </div>
+      <p class="nota">El tamaño cambia si cambia el font-size del contenedor.</p>
+    </section>
+
+    <!-- rem -->
+    <section class="ctx-rem">
+      <h2>rem (relativo al font-size de :root)</h2>
+      <div class="fila">
+        <div class="caja rem-1">width: 10rem</div>
+        <div class="caja rem-2">width: 12rem</div>
+        <div class="caja rem-3">width: 14rem</div>
+      </div>
+      <p class="nota">No cambia con el padre, solo con el tamaño del documento.</p>
+    </section>
+
+    <!-- % -->
+    <section class="ctx-pct">
+      <h2>% (porcentaje respecto al contenedor)</h2>
+      <div class="contenedor">
+        <div class="caja pct-25">25%</div>
+        <div class="caja pct-50">50%</div>
+        <div class="caja pct-75">75%</div>
+      </div>
+      <p class="nota">Las cajas son proporción del ancho del contenedor gris.</p>
+    </section>
+
+    <!-- vw -->
+    <section>
+      <h2>vw (porcentaje del ancho del viewport)</h2>
+      <div class="fila">
+        <div class="caja vw-10">10vw</div>
+        <div class="caja vw-20">20vw</div>
+        <div class="caja vw-30">30vw</div>
+      </div>
+      <p class="nota">Redimensionar la ventana para ver el efecto.</p>
+    </section>
+
+    <!-- vh -->
+    <section>
+      <h2>vh (porcentaje de la altura del viewport)</h2>
+      <div class="fila">
+        <div class="caja vh-10">10vh</div>
+        <div class="caja vh-20">20vh</div>
+        <div class="caja vh-30">30vh</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Experiencia 5 (Medidas relativas)</small>
+  </footer>
+</body>
+</html>
