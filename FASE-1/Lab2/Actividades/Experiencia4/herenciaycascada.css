@@ -1,0 +1,36 @@
+/* ========= HERENCIA (≥7 casos) ========= */
+/* Muchas propiedades se heredan desde ancestros a descendientes */
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: system-ui, sans-serif;      /* hereda */
+  color: #111;                             /* hereda */
+  line-height: 1.6;                        /* hereda */
+  letter-spacing: 0.2px;                   /* hereda */
+}
+main { font-size: 16px; }                  /* hijos heredan tamaño base */
+section { color: inherit; }                /* fuerza heredar color del padre */
+a { color: inherit; text-decoration: underline; }  /* hereda color de texto */
+code { font-family: inherit; }             /* hereda la familia del body */
+ul { list-style-type: square; }            /* se hereda a sus li */
+
+/* ========= CASCADA (≥5 casos) ========= */
+/* 1) Regla general por tipo */
+p { color: #1f2937; }                      /* gris oscuro por defecto para p */
+
+/* 2) Mismo selector más tarde (orden en cascada) — sobreescribe anterior */
+p { margin: 0 0 8px; }                     /* misma especificidad, gana el último */
+
+/* 3) Regla por clase (más específica que tipo) */
+.resaltado { color: #166534; }             /* verde */
+
+/* 4) Regla por id (más específica que clase y tipo) */
+#destacado p { color: #b45309; }           /* marrón dentro de #destacado */
+
+/* 5) !important (evita que la cascada lo sobreescriba con misma/menor especificidad) */
+.nota { color: #6b21a8 !important; }       /* morado prioritario */
+
+/* 6) Especificidad combinada: tipo + clase (más que solo tipo) */
+p.nota { font-weight: 700; }
+
+/* 7) Conflicto resuelto por especificidad: id > clase > tipo */
+#cabecera .slogan { color: #0f766e; }      /* gana sobre p{color:...} */

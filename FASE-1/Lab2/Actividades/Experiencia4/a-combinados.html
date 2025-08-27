@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formas combinadas y múltiples</title>
+  <link rel="stylesheet" href="combinadosymultiples.css">
+</head>
+<body>
+  <header class="card">
+    <h1>Sitio de ejemplo</h1>
+    <nav>
+      <ul>
+        <li><a href="#acerca" class="link">Acerca</a></li>
+        <li><a href="#servicios" class="link">Servicios</a></li>
+        <li><a href="#contacto" class="link">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="acerca" class="seccion card">
+      <h2>Acerca</h2>
+      <p class="nota">Este párrafo está dentro de <code>section &gt; article &gt; p</code> en el siguiente bloque.</p>
+
+      <article class="card">
+        <h3>Objetivo</h3>
+        <p>Comprobar selectores combinados por descendencia, hijos, hermanos, etc.</p>
+      </article>
+
+      <p>Este párrafo <em>sigue</em> a un h2 (para probar hermanos adyacentes y generales).</p>
+      <ul>
+        <li>Ítem A</li>
+        <li>Ítem B</li>
+      </ul>
+      <a href="#top" class="btn primary">Ir arriba</a>
+    </section>
+
+    <section id="servicios" class="seccion">
+      <h2>Servicios</h2>
+      <p>Desarrollo y asesoría.</p>
+      <button class="btn">Acción</button>
+    </section>
+
+    <section id="contacto" class="seccion">
+      <h2>Contacto</h2>
+      <p>Correo: <strong>equipo@ejemplo.com</strong></p>
+    </section>
+  </main>
+
+  <footer>
+    <small>© 2025 Sitio de ejemplo</small>
+  </footer>
+</body>
+</html>

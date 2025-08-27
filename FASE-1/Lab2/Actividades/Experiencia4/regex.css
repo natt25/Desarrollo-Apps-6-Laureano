@@ -1,0 +1,18 @@
+/* Empieza con (^) y termina con ($) en href */
+a[href^="https"] { color: #1e40af; }     /* enlaces seguros */
+a[href^="http:"] { color: #b91c1c; }     /* enlaces inseguros */
+a[href$=".pdf"]  { text-decoration: underline; }
+
+/* Contiene (*) */
+a[href*="login"] { font-weight: 700; }
+
+/* Coincidencia por palabra (~) en class */
+[class~="destacado"] { background: #f1f5f9; }
+
+/* Prefijo de idioma (|=) */
+[lang|="es"] { border: 1px solid #e5e5e5; padding: 8px; }
+
+/* Otros atributos útiles */
+img[src$=".png"] { border: 1px solid #e5e5e5; }
+input[name^="user-"] { outline: 1px dashed #9ca3af; }
+[title] { letter-spacing: .3px; }

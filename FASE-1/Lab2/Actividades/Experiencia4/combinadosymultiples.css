@@ -1,0 +1,42 @@
+/* ========= COMBINADOS (≥7 casos) ========= */
+
+/* 1) Descendiente */
+section article p { color: #111; }
+
+/* 2) Hijo directo */
+nav > ul > li > a { text-decoration: none; }
+
+/* 3) Hermano adyacente (p inmediatamente después de h2) */
+h2 + p { font-style: italic; }
+
+/* 4) Hermanos generales (todo ul que venga después de h2 dentro de la misma sección) */
+h2 ~ ul { margin-top: 8px; }
+
+/* 5) Tipo + clase en el mismo elemento */
+p.nota { background: #fff7ed; }
+
+/* 6) Conjunción de clases (el botón que sea .btn y .primary a la vez) */
+.btn.primary { font-weight: 700; }
+
+/* 7) Elemento con atributo (enlace ancla interno) */
+a[href^="#"] { color: #1e40af; }
+
+/* 8) Combinado con pseudo-clase y descendiente (extra) */
+.card:hover .btn { text-decoration: underline; }
+
+/* ========= MÚLTIPLES (agrupados con coma) (≥5 casos) ========= */
+
+/* Grupo 1: títulos */
+h1, h2, h3 { margin: 0 0 8px; }
+
+/* Grupo 2: chips/etiquetas */
+.nota, code { padding: 2px 4px; }
+
+/* Grupo 3: secciones del main */
+#acerca, #servicios, #contacto { border: 1px solid #e5e5e5; padding: 10px; margin: 12px 0; }
+
+/* Grupo 4: texto */
+p, li { line-height: 1.6; }
+
+/* Grupo 5: controles (si hubiera) */
+input, textarea, button { font: inherit; }

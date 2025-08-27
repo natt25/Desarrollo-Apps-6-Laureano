@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Herencia y cascada</title>
+  <link rel="stylesheet" href="herenciaycascada.css">
+</head>
+<body>
+  <header id="cabecera">
+    <h1 class="titulo">Sitio de ejemplo</h1>
+    <p class="slogan">Un subtítulo breve</p>
+  </header>
+
+  <main>
+    <section id="acerca">
+      <h2>Acerca</h2>
+      <p>Texto de ejemplo con <a href="#acerca">un enlace</a> y <code>código</code>.</p>
+      <ul>
+        <li>Primer ítem</li>
+        <li>Segundo ítem</li>
+      </ul>
+      <p class="nota resaltado">Párrafo resaltado para pruebas de cascada.</p>
+    </section>
+
+    <section id="destacado" class="bloque">
+      <h2>Bloque destacado</h2>
+      <p>Este bloque sirve para probar **especificidad** (etiqueta vs clase vs id) y orden.</p>
+      <p class="nota">Esta nota tiene una regla con <code>!important</code>.</p>
+    </section>
+  </main>
+
+  <footer>
+    <small>© 2025 Sitio de ejemplo</small>
+  </footer>
+</body>
+</html>
