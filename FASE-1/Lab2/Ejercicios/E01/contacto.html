@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sitio Selectores — Contacto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="page-contacto">
+  <header class="site-header card">
+    <nav class="container" aria-label="Principal">
+      <a class="brand" href="index.html">Selectores</a>
+      <ul class="menu">
+        <li><a class="link" href="index.html#hero">Inicio</a></li>
+        <li><a class="link" href="servicios.html">Servicios</a></li>
+        <li><a class="link" href="contacto.html">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="seccion">
+      <h1>Contacto</h1>
+      <p class="lead drop">Déjanos tus datos y te escribimos.</p>
+
+      <form action="/enviar" method="post" class="form card">
+        <label>Nombre
+          <input type="text" name="nombre" required minlength="2" placeholder="Tu nombre">
+        </label>
+
+        <label>Correo
+          <input type="email" name="email" required placeholder="tucorreo@ejemplo.com">
+        </label>
+
+        <label>Mensaje
+          <textarea name="mensaje" required minlength="10" placeholder="Cuéntanos…"></textarea>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" required> Acepto términos
+        </label>
+
+        <button type="submit" class="btn primary">Enviar</button>
+        <button type="reset" class="btn">Limpiar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© 2025 • Sitio de selectores</small>
+    </div>
+  </footer>
+</body>
+</html>

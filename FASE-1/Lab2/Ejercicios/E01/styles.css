@@ -1,0 +1,105 @@
+/* ====== BASE (herencia) ====== */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font:16px/1.6 system-ui,Arial,sans-serif;   /* hereda */
+  color:#111;                                  /* hereda */
+  letter-spacing:.2px;                         /* hereda */
+}
+.container{max-width:960px;margin:0 auto;padding:16px}
+.card{border:1px solid #e5e5e5;background:#fafafa;padding:12px;border-radius:8px}
+.site-header,.site-footer{background:#f8f8f8}
+.brand{font-weight:700;text-decoration:none}
+
+/* ====== MÚLTIPLES (agrupados) ====== */
+h1,h2,h3{margin:0 0 8px}
+p,li{margin:0 0 8px}
+
+/* ====== SELECTORES POR NOMBRE (etiqueta) ====== */
+header{border-bottom:1px solid #e5e5e5}
+footer{border-top:1px solid #e5e5e5}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:12px}
+
+/* ====== SELECTORES POR CLASE ====== */
+.menu .link{color:#1e40af;text-decoration:none}
+.menu .link:hover{text-decoration:underline}
+.seccion{margin:16px 0}
+.titulo{font-size:28px}
+.lead{font-size:18px}
+.btn{display:inline-block;padding:6px 10px;border:1px solid #ddd;border-radius:6px;text-decoration:none;color:#111;background:#fff}
+.btn.primary{background:#1e40af;color:#fff;border-color:#1e40af}
+.nota{background:#fff7ed}
+.resaltado{color:#166534 !important} /* cascada: fuerza este color */
+
+/* ====== SELECTORES POR ID ====== */
+#page-inicio .brand{color:#111}
+#page-servicios .brand{color:#0f766e}
+#page-contacto .brand{color:#b45309}
+
+/* ====== COMBINADOS (≥7) ====== */
+/* 1) Descendiente */
+section article p{color:#222}
+/* 2) Hijo directo */
+nav > ul > li > a{padding:4px 6px}
+/* 3) Hermano adyacente */
+h1 + p{font-style:italic}
+/* 4) Hermanos generales */
+h1 ~ p{color:#374151}
+/* 5) Tipo + clase */
+p.nota{border:1px dashed #f59e0b}
+/* 6) Conjunción de clases */
+.btn.primary{font-weight:700}
+/* 7) En tarjeta con hover, subrayar botones hijos */
+.card:hover .btn{text-decoration:underline}
+
+/* ====== ATRIBUTOS (incl. “regex”: ^ $ * ~ |=) ====== */
+[title]{outline:1px dashed #bbb}
+a[href^="https"]{color:#1e40af}   /* empieza con https */
+a[href^="http:"]{color:#b91c1c}   /* http no seguro */
+a[href$=".pdf"]{text-decoration:underline} /* termina con .pdf */
+a[href*="seguro"]{font-weight:700}   /* contiene */
+[class~="marcada"]{padding-left:0}   /* palabra en class */
+[lang|="es"]{border-left:4px solid #e5e5e5;padding-left:12px} /* prefijo idioma */
+[data-rol="cta"]{box-shadow:0 0 0 2px rgba(30,64,175,.15)}
+[data-rol="info"]{background:#eef6ff;border-left:4px solid #1e40af;padding:8px}
+
+/* ====== PSEUDO-CLASES (≥10) ====== */
+a:link{opacity:.95}
+a:visited{opacity:.85}
+a:hover{filter:brightness(1.05)}
+a:active{transform:scale(.98)}
+input:focus, textarea:focus{outline:2px solid #1e40af}
+input:required, textarea:required{border:1px solid #d1d5db}
+input:valid, textarea:valid{border-color:#16a34a}
+input:invalid, textarea:invalid{border-color:#dc2626}
+input[type="checkbox"]:checked{outline:2px dashed #16a34a}
+button:disabled{opacity:.6}
+li:nth-child(odd){background:#f8fafc}
+li:nth-child(even){background:#f1f5f9}
+p:first-child{font-weight:700}
+p:last-child{font-style:italic}
+section :not(.nota){} /* demostración */
+:target{scroll-margin-top:12px;box-shadow:0 0 0 3px rgba(14,165,233,.25)}
+
+/* ====== PSEUDO-ELEMENTOS (≥7) ====== */
+.lead::first-line{text-transform:uppercase}
+.drop::first-letter{font-size:160%;font-weight:700}
+::selection{background:#fde68a}
+.marcada li::marker{content:"• ";color:#1e40af}
+input::placeholder{color:#9ca3af}
+.badge::before{content:"★ ";color:#f59e0b}
+.badge::after{content:" ✓";color:#16a34a}
+
+/* ====== FORMULARIO (estructura mínima, no diseño) ====== */
+.form label{display:block;margin:10px 0 6px}
+.form input,.form textarea{width:100%;padding:8px;border:1px solid #e5e5e5;border-radius:6px}
+
+/* ====== HERENCIA Y CASCADA ====== */
+/* Regla general por tipo */
+p{color:#1f2937}
+/* La misma regla más tarde (gana por orden) */
+p{margin-bottom:8px}
+/* Clase (más específica que tipo) */
+.resaltado{font-weight:700}
+/* ID (más específico que clase) */
+#destino p{color:#b45309}
