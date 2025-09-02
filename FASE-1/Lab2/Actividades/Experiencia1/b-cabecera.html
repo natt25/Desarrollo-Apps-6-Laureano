@@ -3,27 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <title>css en cabecera</title>
-
   <style>
-    /* Reglas movidas desde "en línea" a la cabecera */
-    h1 { color:black; font-size:larger; margin:0; }
-    h2 { color:brown; font-family:'Times New Roman', Times, serif; margin:0 0 8px 0; }
-    p  { color:#000; font-weight:100; background-color:bisque; padding:6px; }
-    small { color:#000; }
+    /* base */
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{font:16px/1.6 system-ui, Arial, sans-serif; color:#111}
+
+    /* layout */
+    .container{max-width:960px;margin:0 auto;padding:12px 16px}
+    header{border-bottom:1px solid #e5e5e5;background:#fafafa}
+    footer{border-top:1px solid #e5e5e5;background:#fafafa;color:#555}
+
+    /* nav */
+    nav{display:flex;align-items:center;gap:16px}
+    nav ul{list-style:none;margin:0;padding:0;display:flex;gap:12px}
+    .brand{font-weight:800;text-decoration:none;color:#1e40af}
+    .link{color:#1e40af;text-decoration:none}
+
+    /* main */
+    h1{margin:6px 0 8px;font-size:28px}
+    h2{margin:0 0 8px;font-size:20px}
+    p{margin:0 0 8px}
+    .card{border:1px solid #e5e5e5;background:#fff;padding:12px;border-radius:8px}
+    .muted{color:#475569}
+    .section{margin:16px 0}
   </style>
 </head>
 <body>
   <header>
-    <h1>Título de la página Web</h1>
-    <h2>Subtítulo de la página</h2>
+    <nav class="container" aria-label="Principal">
+      <a class="brand" href="#">Colibrí</a>
+      <ul>
+        <li><a class="link" href="#">Inicio</a></li>
+        <li><a class="link" href="#">Menú</a></li>
+        <li><a class="link" href="#">Reservas</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <p>Hola Mundo!! (párrafo con reglas en la cabecera)</p>
+  <main class="container">
+    <section class="section">
+      <h1>Bienvenida/o a Colibrí</h1>
+      <p class="muted">Café de especialidad y pastelería artesanal.</p>
+
+      <article class="card">
+        <h2>Nuestra propuesta</h2>
+        <p>Granos tostados localmente y leche fresca.</p>
+        <p>Filtrados, espresso y cold brew.</p>
+      </article>
+    </section>
   </main>
 
   <footer>
-    <small>© 2025</small>
+    <div class="container">
+      <small>© 2025 • Cafetería Colibrí</small>
+    </div>
   </footer>
 </body>
 </html>

@@ -7,16 +7,33 @@
 </head>
 <body>
   <header>
-    <h1>Título de la página Web</h1>
-    <h2>Subtítulo de la página</h2>
+    <nav class="container" aria-label="Principal">
+      <a class="brand" href="#">Colibrí</a>
+      <ul>
+        <li><a class="link" href="#">Inicio</a></li>
+        <li><a class="link" href="#">Menú</a></li>
+        <li><a class="link" href="#">Reservas</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <p>Hola Mundo!! (párrafo con reglas desde main.css)</p>
+  <main class="container">
+    <section class="section">
+      <h1>Bienvenida/o a Colibrí</h1>
+      <p class="muted">Café de especialidad y pastelería artesanal.</p>
+
+      <article class="card">
+        <h2>Nuestra propuesta</h2>
+        <p>Granos tostados localmente y leche fresca.</p>
+        <p>Filtrados, espresso y cold brew.</p>
+      </article>
+    </section>
   </main>
 
   <footer>
-    <small>© 2025</small>
+    <div class="container">
+      <small>© 2025 • Cafetería Colibrí</small>
+    </div>
   </footer>
 </body>
 </html>

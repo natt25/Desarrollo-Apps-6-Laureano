@@ -1,4 +1,19 @@
-h1 { color: black; font-size: larger; }
-h2 { color: brown; font-family: 'Times New Roman', Times, serif; }
-p  { color: #000; font-weight: 100; background-color: bisque; }
-small { color:#000; }
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font:16px/1.6 system-ui, Arial, sans-serif; color:#111}
+
+.container{max-width:960px;margin:0 auto;padding:12px 16px}
+header{border-bottom:1px solid #e5e5e5;background:#fafafa}
+footer{border-top:1px solid #e5e5e5;background:#fafafa;color:#555}
+
+nav{display:flex;align-items:center;gap:16px}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:12px}
+.brand{font-weight:800;text-decoration:none;color:#1e40af}
+.link{color:#1e40af;text-decoration:none}
+
+h1{margin:6px 0 8px;font-size:28px}
+h2{margin:0 0 8px;font-size:20px}
+p{margin:0 0 8px}
+.card{border:1px solid #e5e5e5;background:#fff;padding:12px;border-radius:8px}
+.muted{color:#475569}
+.section{margin:16px 0}
