@@ -1,53 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Sitio Selectores — Inicio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Maquetación básica con diferentes tipos de selectores CSS.">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>Cafetería Colibrí — Inicio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Cafetería Colibrí: café de especialidad, granos de origen y pastelería artesanal." />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body id="page-inicio">
   <header class="site-header card">
     <nav class="container" aria-label="Principal">
-      <a class="brand" href="index.html" title="Ir al inicio">Selectores</a>
+      <a class="brand" href="index.html" title="Volver al inicio">Colibrí</a>
       <ul class="menu">
         <li><a class="link" href="index.html#hero">Inicio</a></li>
-        <li><a class="link" href="servicios.html">Servicios</a></li>
-        <li><a class="link" href="contacto.html">Contacto</a></li>
+        <li><a class="link" href="menu.html">Menú</a></li>
+        <li><a class="link" href="reservas.html">Reservas</a></li>
       </ul>
     </nav>
   </header>
 
   <main id="hero" class="container">
     <section class="seccion" lang="es-PE">
-      <h1 class="titulo lead">Maquetación de ejemplo</h1>
-      <p class="intro">Esta página demuestra el uso de <strong>selectores CSS</strong> en un sitio simple.</p>
-      <p class="nota resaltado" title="Este párrafo tiene atributo title">Párrafo con atributo <code>title</code> para probar selectores de atributo.</p>
-      <p>Enlaces de prueba: 
-        <a href="http://inseguro.ejemplo.com">HTTP</a> ·
-        <a href="https://seguro.ejemplo.com">HTTPS</a> ·
-        <a href="assets/guia.pdf">PDF</a> ·
-        <a href="#hero" class="btn primary" data-rol="cta">Ir al inicio</a>
-      </p>
+      <h1 class="titulo lead">Bienvenida/o a Colibrí ☕</h1>
+      <p class="intro">Café de especialidad, granos de origen y pastelería artesanal.</p>
+
+      <!-- Contenido normal, sin “textos de prueba” visibles -->
       <ul class="marcada">
-        <li>Ítem 1</li>
-        <li>Ítem 2</li>
-        <li>Ítem 3</li>
-        <li>Ítem 4</li>
+        <li>Origen Perú</li>
+        <li>Origen Colombia</li>
+        <li>Origen Etiopía</li>
+        <li>Origen Brasil</li>
       </ul>
+
+      <p><a class="btn primary badge" href="menu.html" title="Ver el menú">Ver menú</a></p>
     </section>
 
     <article class="card">
-      <h2>Artículo principal</h2>
-      <p>Este artículo sirve para verificar **descendiente** (section article p), **hijo** (nav > ul > li > a) y **hermanos** (h2 + p, h2 ~ ul).</p>
-      <p>Crea capturas de pantalla mostrando qué reglas afectan a cada bloque.</p>
+      <h2>Nuestra propuesta</h2>
+      <p>Granos tostados localmente y leche fresca.</p>
+      <p>Filtrados, espresso, cold brew y más.</p>
     </article>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <small>© 2025 • Sitio de selectores</small>
+      <small>© 2025 • Cafetería Colibrí</small>
+      <!-- Enlaces de footer reales (para reglas de atributo sin “ruido” visual) -->
+      <span> · </span>
+      <a class="link" href="assets/carta.pdf">Carta (PDF)</a>
+      <span> · </span>
+      <a class="link" href="https://instagram.com/colibri-cafe">Instagram</a>
     </div>
   </footer>
 </body>
