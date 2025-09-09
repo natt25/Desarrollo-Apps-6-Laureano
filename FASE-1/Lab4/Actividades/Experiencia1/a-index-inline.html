@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>JS en línea — Act1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <header>
+    <h1>Formas de declarar JavaScript: En línea</h1>
+  </header>
+
+  <main>
+    <section>
+      <p id="estado">Estado: listo</p>
+
+      <!-- Ejemplo clásico del PDF: onclick con alert(...) -->
+      <button
+        onclick="alert('¡Hola Mundo!'); document.getElementById('estado').textContent='Estado: hiciste clic (inline)'; console.log('¡Hola desde inline!');">
+        Haz clic (inline)
+      </button>
+    </section>
+  </main>
+
+  <footer>
+    <small>Demostración en línea</small>
+  </footer>
+</body>
+</html>

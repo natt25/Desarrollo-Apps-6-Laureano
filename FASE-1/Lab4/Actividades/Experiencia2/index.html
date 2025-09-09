@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Experiencia de Práctica Nº 02 — Recursos del Lenguaje (JS)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; }
+    header h1 { margin-bottom: .25rem; }
+    header p { margin-top: 0; color: #555; }
+    .panel { border: 1px solid #ddd; border-radius: 10px; padding: 1rem; margin: 1rem 0; }
+    .btns { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+    button { padding: .5rem .9rem; border-radius: 8px; border: 1px solid #ccc; cursor: pointer; }
+    #screenlog { background: #0b1020; color: #cfe3ff; padding: 1rem; min-height: 200px; white-space: pre-wrap; border-radius: 10px; }
+    code { background: #f6f8fa; padding: .1rem .3rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Experiencia de Práctica Nº 02: Uso de recursos del lenguaje</h1>
+    <p>Guía de Prácticas — Fundamentos de JavaScript I</p>
+  </header>
+
+  <main>
+    <!-- Consola en pantalla -->
+    <section class="panel">
+      <h2>Consola en pantalla</h2>
+      <div id="screenlog" aria-live="polite"></div>
+      <div class="btns">
+        <button onclick="clearScreen()">Limpiar pantalla</button>
+        <button onclick="console.clear(); log('Consola del navegador limpiada.')">Limpiar consola del navegador</button>
+      </div>
+    </section>
+
+    <!-- (a) USO DE VARIABLES Y CONSTANTES -->
+    <section class="panel" id="a-variables-constantes">
+      <h2>a) Uso de <code>let</code>, <code>const</code> y ámbito de bloque</h2>
+      <p>Crear un bloque, declarar variable de bloque y constante, y demostrar su alcance.</p>
+      <div class="btns">
+        <button onclick="demoA()">Ejecutar inciso (a)</button>
+      </div>
+    </section>
+
+    <!-- (b) ELEVACIÓN DE VARIABLES (HOISTING) -->
+    <section class="panel" id="b-hoisting">
+      <h2>b) Elevación de variables (hoisting)</h2>
+      <p>Ejecutar el código indicado en la guía y observar los resultados.</p>
+      <div class="btns">
+        <button onclick="demoB_original()">Ejecutar código EXACTO de la guía</button>
+        <button onclick="demoB_corregido()">Ejecutar versión corregida (mismo identificador)</button>
+      </div>
+    </section>
+
+    <!-- (c) USO DE console.log() y SCOPE -->
+    <section class="panel" id="c-console-scope">
+      <h2>c) <code>console.log()</code> e inspección de <em>scope</em></h2>
+      <p>Imprimir variables sin asignar y verificar alcance con funciones anidadas.</p>
+      <div class="btns">
+        <button onclick="demoC()">Ejecutar inciso (c)</button>
+      </div>
+    </section>
+
+    <!-- (d) TIPOS DE DATOS y CAMBIO DE TIPOS -->
+    <section class="panel" id="d-tipos-cambio">
+      <h2>d) Tipos de datos, <code>parseInt</code> y <code>toString</code></h2>
+      <p>Reproducir los ejemplos de cambio de tipo, <code>parseInt</code> y <code>Number.prototype.toString</code>.</p>
+      <div class="btns">
+        <button onclick="demoD()">Ejecutar inciso (d)</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Utilidades de logging en pantalla + consola
+    const screen = document.getElementById('screenlog');
+    function log(...args) {
+      console.log(...args);
+      const msg = args.map(a => {
+        try { return typeof a === 'object' ? JSON.stringify(a) : String(a); }
+        catch { return String(a); }
+      }).join(' ');
+      screen.textContent += msg + '\n';
+    }
+    function clearScreen(){ screen.textContent = ''; }
+
+    // (a) Variables y constantes: crear un bloque, let/const y demostrar ámbito
+    function demoA() {
+      log('--- (a) Variables y Constantes: Ámbito de bloque ---');
+
+      { // Bloque de código
+        let contador = 1;           // variable con ámbito de bloque (let)
+        const MENSAJE = 'Fijo';     // constante en el mismo bloque (const)
+        log('Dentro del bloque → contador =', contador, ', MENSAJE =', MENSAJE);
+
+        // Modificar let
+        contador++;
+        log('Dentro del bloque → contador++ =', contador);
+
+        // Intento de reasignar const (capturamos error para demostrar inmutabilidad)
+        try {
+          // MENSAJE = 'Otro'; // descomenta para ver el TypeError real
+          throw new TypeError('Simulación de intento de reasignar const (TypeError).');
+        } catch (e) {
+          log('Intento de reasignar const →', e.toString());
+        }
+      }
+
+      // Fuera del bloque:
+      try {
+        // Ambas deben estar fuera de alcance si se declararon con let/const
+        log('Fuera del bloque → contador =', contador);
+      } catch (e) {
+        log('Fuera del bloque → contador no existe (ReferenceError con let).');
+      }
+      try {
+        log('Fuera del bloque → MENSAJE =', MENSAJE);
+      } catch (e) {
+        log('Fuera del bloque → MENSAJE no existe (ReferenceError con const).');
+      }
+
+      log('--- Fin (a) ---');
+    }
+
+    // (b) Hoisting — versión EXACTA del PDF (tal como está escrito)
+    function demoB_original() {
+      log('--- (b) Hoisting: código EXACTO de la guía ---');
+
+      // 1) console.log(x === undefined); var x = 3;
+      try {
+        log('console.log(x === undefined) →', (x === undefined));
+      } catch (e) {
+        log('x no está declarado aún →', e.toString());
+      }
+      var x = 3; // declaración se eleva (var), asignación no
+      log('Después de var x = 3 → x =', x);
+
+      // 2) IIFE con nombres tal cual están en la guía (myVar vs myvar):
+      (function() {
+        try {
+          // En la guía aparece console.log(myVar) y luego var myvar; (diferentes)
+          // Eso produce ReferenceError en JS real, lo mostramos:
+          log('IIFE: console.log(myVar) →', myVar);
+        } catch (e) {
+          log('IIFE: myVar no está definido (ReferenceError por cambio de mayúsculas/minúsculas).');
+        }
+        var myvar = 'valor local';
+        log('IIFE: var myvar = "valor local" → myvar =', myvar);
+      })();
+
+      log('--- Fin (b) (versión EXACTA) ---');
+    }
+
+    // (b) Hoisting — versión CORREGIDA (mismo identificador en ambas líneas)
+    function demoB_corregido() {
+      log('--- (b) Hoisting: versión corregida (mismo identificador) ---');
+      (function() {
+        // Mismo nombre antes y después → muestra "undefined" por hoisting de var
+        try {
+          log('IIFE corregida: console.log(myvar) →', myvar); // undefined por hoisting (declaración)
+        } catch (e) {
+          log('IIFE corregida: error inesperado →', e.toString());
+        }
+        var myvar = 'valor local';
+        log('IIFE corregida: tras var myvar = "valor local" →', myvar);
+      })();
+      log('--- Fin (b) (corregido) ---');
+    }
+
+    // (c) console.log() y scope con funciones anidadas
+    function demoC() {
+      log('--- (c) console.log() & scope ---');
+
+      // 1) Variables sin asignar:
+      var z;
+      log('Variable declarada pero no asignada (var z) →', z); // undefined
+
+      // 2) Funciones anidadas y alcance
+      const nombre = 'Global';
+      function externa() {
+        const nombre = 'Externa';
+        function interna() {
+          // Ve "nombre" de su ámbito más cercano (Externa)
+          log('interna() ve nombre =', nombre);
+          // También puede ver z (var global del script)
+          log('interna() ve z =', z);
+        }
+        interna();
+      }
+      externa();
+
+      log('--- Fin (c) ---');
+    }
+
+    // (d) Tipos de datos y cambio de tipos: answer, parseInt, toString
+    function demoD() {
+      log('--- (d) Tipos de datos, parseInt y toString ---');
+
+      // Cambio de tipo dinámico (var answer = 42; answer = '...';)
+      var answer = 42;
+      log('answer (número) →', answer, ' typeof =', typeof answer);
+      answer = 'Gracias por todo el pescado...';
+      log('answer (string) →', answer, ' typeof =', typeof answer);
+
+      // parseInt ejemplos (tal como lista la guía)
+      const pruebas = [
+        ['parseInt("F", 16)', parseInt("F", 16)],
+        ['parseInt("17", 8)', parseInt("17", 8)],
+        ['parseInt("15", 10)', parseInt("15", 10)],
+        ['parseInt(15.99, 10)', parseInt(15.99, 10)],
+        ['parseInt("FXX123", 16)', parseInt("FXX123", 16)],
+        ['parseInt("1111", 2)', parseInt("1111", 2)],
+        ['parseInt("15*3", 10)', parseInt("15*3", 10)],
+        ['parseInt("12", 13)', parseInt("12", 13)],
+        ['parseInt("Hello", 8)', parseInt("Hello", 8)],
+        ['parseInt("0x7", 10)', parseInt("0x7", 10)],
+        ['parseInt("546", 2)', parseInt("546", 2)]
+      ];
+      for (const [expr, val] of pruebas) log(expr, '→', val);
+
+      // toString ejemplos de la guía
+      var howMany = 10;
+      alert("howMany.toString() is " + howMany.toString()); // "10"
+      alert("45 .toString() is " + (45).toString());        // "45"
+      var x = 7;
+      alert(x.toString(2));                                 // "111"
+
+      log('--- Fin (d) ---');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>JS en etiquetas &lt;script&gt; — Act1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <header>
+    <h1>Formas de declarar JavaScript: Etiquetas &lt;script&gt;</h1>
+  </header>
+
+  <main>
+    <section>
+      <p id="estado">Estado: listo</p>
+      <button id="btnScript">Haz clic (script)</button>
+    </section>
+  </main>
+
+  <footer>
+    <small>Demostración en &lt;script&gt;</small>
+  </footer>
+
+  <!-- Código JS embebido tal como sugiere la guía -->
+  <script>
+    // Se ejecuta al parsear esta etiqueta:
+    console.log("¡Hola desde el script!");
+
+    // DOM y eventos
+    const estado = document.getElementById("estado");
+    const btn = document.getElementById("btnScript");
+
+    btn.addEventListener("click", () => {
+      alert("Evento desde <script>!");
+      estado.textContent = "Estado: hiciste clic (script)";
+    });
+  </script>
+</body>
+</html>
