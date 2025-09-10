@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Ejercicio 3 — Generador de Contraseña Segura</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --b:#0b1020; --c:#cfe3ff; }
+    body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; }
+    .card { max-width: 520px; padding: 1.25rem; border: 1px solid #ddd; border-radius: 12px; }
+    .row { display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; }
+    label { display:flex; gap:.4rem; align-items:center; }
+    input[type="number"] { width:120px; padding:.45rem .6rem; border:1px solid #ccc; border-radius:8px; }
+    button { padding:.55rem .95rem; border-radius:8px; border:1px solid #ccc; cursor:pointer; }
+    #out { margin-top:1rem; padding:1rem; border-radius:10px; background:var(--b); color:var(--c); }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    .hint { color:#666; font-size:.95rem; }
+  </style>
+</head>
+<body>
+  <h1>Ejercicio 3: Generador de Contraseña Segura</h1>
+
+  <div class="card">
+    <div class="row">
+      <label>Longitud:
+        <input id="len" type="number" min="4" max="128" value="12" />
+      </label>
+    </div>
+
+    <p class="hint">Elige los tipos de caracteres a incluir:</p>
+    <div class="row" role="group" aria-label="Tipos de caracteres">
+      <label><input id="lower" type="checkbox" checked> a–z</label>
+      <label><input id="upper" type="checkbox" checked> A–Z</label>
+      <label><input id="digits" type="checkbox" checked> 0–9</label>
+      <label><input id="symbols" type="checkbox"> Símbolos (!@#$...)</label>
+    </div>
+
+    <div class="row" style="margin-top:.75rem;">
+      <button onclick="generar()">Generar</button>
+      <button onclick="copiar()">Copiar</button>
+    </div>
+
+    <div id="out" class="mono" aria-live="polite"></div>
+    <p class="hint">Usa el botón <em>Copiar</em> para llevar la contraseña al portapapeles.</p>
+  </div>
+
+  <script>
+    // Conjuntos de caracteres
+    const SETS = {
+      lower:  "abcdefghijklmnopqrstuvwxyz",
+      upper:  "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+      digits: "0123456789",
+      symbols:"!@#$%^&*()-_=+[]{};:,.?/|~<>"
+    };
+
+    // Aleatorio criptográficamente seguro: índice en [0, n)
+    function randIndex(n) {
+      // Usa WebCrypto para mejor aleatoriedad
+      const buf = new Uint32Array(1);
+      let x;
+      do {
+        crypto.getRandomValues(buf);
+        x = buf[0] & 0x7FFFFFFF; // positivo
+      } while (x >= Math.floor(0x80000000 / n) * n);
+      return x % n;
+    }
+
+    // Toma un char aleatorio de una cadena 'pool'
+    function pick(pool) {
+      return pool.charAt(randIndex(pool.length));
+    }
+
+    // Mezcla Fisher–Yates in-place
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = randIndex(i + 1);
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function generar() {
+      const len = Math.max(4, Math.min(128, Number(document.getElementById('len').value) || 12));
+      const opts = {
+        lower:  document.getElementById('lower').checked,
+        upper:  document.getElementById('upper').checked,
+        digits: document.getElementById('digits').checked,
+        symbols:document.getElementById('symbols').checked
+      };
+
+      const activos = Object.entries(opts).filter(([k,v]) => v).map(([k]) => k);
+      const out = document.getElementById('out');
+
+      if (activos.length === 0) {
+        out.textContent = '⚠ Selecciona al menos un tipo de caracteres.';
+        return;
+      }
+      if (len < activos.length) {
+        out.textContent = `⚠ La longitud debe ser ≥ ${activos.length} (para incluir al menos 1 de cada tipo elegido).`;
+        return;
+      }
+
+      // 1) Garantiza al menos 1 de cada tipo seleccionado
+      let chars = [];
+      let pool = "";
+      for (const k of activos) {
+        pool += SETS[k];
+        chars.push(pick(SETS[k]));
+      }
+
+      // 2) Rellena el resto desde el pool combinado
+      while (chars.length < len) {
+        chars.push(pick(pool));
+      }
+
+      // 3) Mezclar para no dejar los "garantizados" al inicio
+      shuffle(chars);
+
+      const pass = chars.join('');
+      out.textContent = pass;
+      console.log("[Password]", pass);
+    }
+
+    async function copiar() {
+      const txt = document.getElementById('out').textContent.trim();
+      if (!txt) { alert('Aún no generas una contraseña.'); return; }
+      try {
+        await navigator.clipboard.writeText(txt);
+        alert('¡Copiado al portapapeles!');
+      } catch {
+        // Fallback para navegadores que bloquean Clipboard API
+        const ta = document.createElement('textarea');
+        ta.value = txt;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+        alert('¡Copiado!');
+      }
+    }
+  </script>
+</body>
+</html>
