@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Experiencia de Práctica Nº 06 — Objetos Globales (JS)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --b:#0b1020; --c:#cfe3ff; --g:#ddd; }
+    body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; }
+    header h1 { margin-bottom: .25rem; }
+    header p { margin-top: 0; color: #555; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 980px){ .grid { grid-template-columns: 1fr 1fr; } }
+    .panel { border: 1px solid var(--g); border-radius: 12px; padding: 1rem; }
+    .btns { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+    button { padding: .5rem .9rem; border-radius: 8px; border: 1px solid #ccc; cursor: pointer; }
+    input { padding:.45rem .6rem; border:1px solid #ccc; border-radius:8px; }
+    #screenlog { background: var(--b); color: var(--c); padding: 1rem; min-height: 240px; white-space: pre-wrap; border-radius: 12px; }
+    pre { background:#f6f8fa; padding: .8rem; border-radius: 10px; overflow:auto; }
+    code { background:#f0f3f7; padding:.12rem .28rem; border-radius:6px }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Experiencia de Práctica Nº 06: Uso de Objetos Globales</h1>
+    <p>Guía de Prácticas — Fundamentos de JavaScript I</p>
+  </header>
+
+  <!-- Consola en pantalla -->
+  <section class="panel">
+    <h2>Consola en pantalla</h2>
+    <div id="screenlog" aria-live="polite"></div>
+    <div class="btns">
+      <button onclick="clearScreen()">Limpiar pantalla</button>
+      <button onclick="console.clear(); log('Consola del navegador limpiada.')">Limpiar consola del navegador</button>
+    </div>
+  </section>
+
+  <div class="grid">
+    <!-- (a) WINDOW -->
+    <section class="panel">
+      <h2>(a) Uso del objeto <code>window</code></h2>
+      <p>Visualiza propiedades y prueba algunos métodos de <code>window</code>.</p>
+      <div class="btns">
+        <button onclick="verPropsWindow()">Ver propiedades (window)</button>
+        <button onclick="demoWindowMetodos()">Probar métodos (alert, confirm, prompt, setTimeout, setInterval)</button>
+        <button onclick="detenerIntervalo()">Detener intervalo</button>
+      </div>
+      <h3>Salida (resumen de propiedades)</h3>
+      <pre id="vista-window"></pre>
+    </section>
+
+    <!-- (b) ARRAY -->
+    <section class="panel">
+      <h2>(b) Uso del objeto <code>Array</code></h2>
+      <p>Muestra propiedades/métodos estáticos y del prototipo de <code>Array</code>. Ejecuta acciones de ejemplo.</p>
+      <div class="btns">
+        <button onclick="verPropsArray()">Ver propiedades (Array)</button>
+        <button onclick="demoArrayMetodos()">Probar métodos (isArray, from, of, prototype.*)</button>
+      </div>
+      <h3>Salida</h3>
+      <pre id="vista-array"></pre>
+    </section>
+
+    <!-- (c) NUMBER -->
+    <section class="panel">
+      <h2>(c) Uso del objeto <code>Number</code></h2>
+      <p>Consulta constantes y métodos de <code>Number</code> y genera ejemplos de formato numérico.</p>
+      <div class="btns">
+        <input id="numEntrada" type="text" placeholder="Ej. 1234.567" />
+        <button onclick="verPropsNumber()">Ver propiedades (Number)</button>
+        <button onclick="demoNumberMetodos()">Probar métodos (isFinite, parseFloat, toFixed, toPrecision)</button>
+      </div>
+      <h3>Salida</h3>
+      <pre id="vista-number"></pre>
+    </section>
+  </div>
+
+  <script>
+    // ===== Utilidades de logging =====
+    const screen = document.getElementById('screenlog');
+    function log(...args) {
+      console.log(...args);
+      const msg = args.map(a => {
+        try { return typeof a === 'object' ? JSON.stringify(a) : String(a); }
+        catch { return String(a); }
+      }).join(' ');
+      screen.textContent += msg + '\n';
+    }
+    function clearScreen(){ screen.textContent = ''; }
+
+    // ===== (a) WINDOW =====
+    let _timer = null, _interval = null;
+
+    function verPropsWindow(){
+      const keys = Object.getOwnPropertyNames(window);
+      const primeras = keys.slice(0, 60); // resumen
+      const info = {
+        userAgent: navigator.userAgent,
+        location: String(window.location),
+        inner: { innerWidth, innerHeight },
+        outer: { outerWidth, outerHeight },
+        historyLength: history.length,
+        localStorage: typeof localStorage !== 'undefined',
+        sessionStorage: typeof sessionStorage !== 'undefined',
+        totalProps: keys.length,
+        primeras60: primeras
+      };
+      document.getElementById('vista-window').textContent = JSON.stringify(info, null, 2);
+      log('window: propiedades listadas (resumen).');
+    }
+
+    function demoWindowMetodos(){
+      alert('Hola desde window.alert()');
+      const ok = confirm('¿Continuar con prompt y timers?');
+      log('confirm →', ok);
+
+      const nombre = prompt('¿Cómo te llamas?', 'Ana');
+      log('prompt →', nombre ?? '(cancelado)');
+
+      // Temporizadores
+      if (_timer) clearTimeout(_timer);
+      if (_interval) clearInterval(_interval);
+
+      _timer = setTimeout(() => log('setTimeout → ejecutado después de 1000 ms'), 1000);
+      let t = 0;
+      _interval = setInterval(() => {
+        t += 1;
+        log('setInterval → tick', t);
+        if (t >= 5) detenerIntervalo();
+      }, 500);
+    }
+
+    function detenerIntervalo(){
+      if (_interval) {
+        clearInterval(_interval);
+        _interval = null;
+        log('Intervalo detenido.');
+      }
+    }
+
+    // ===== (b) ARRAY =====
+    function verPropsArray(){
+      const estaticas = Object.getOwnPropertyNames(Array).sort();          // e.g., isArray, from, of
+      const proto = Object.getOwnPropertyNames(Array.prototype).sort();    // e.g., push, map, filter, reduce...
+      const info = {
+        esConstructor: typeof Array === 'function',
+        estaticas: estaticas.slice(0, 30),
+        metodosPrototype: proto.slice(0, 40),
+        ejemploLength: ['a','b','c'].length
+      };
+      document.getElementById('vista-array').textContent = JSON.stringify(info, null, 2);
+      log('Array: propiedades/métodos listados (resumen).');
+    }
+
+    function demoArrayMetodos(){
+      // Estáticos
+      const desdeIterable = Array.from('ABC');     // ['A','B','C']
+      const desdeArgs = Array.of(1, 2, 3);         // [1,2,3]
+      const esArray = Array.isArray(desdeArgs);    // true
+
+      // De prototipo
+      const base = [5, 3, 9, 1];
+      const ordenado = [...base].sort((a,b)=>a-b);
+      const mapeado = base.map(x=>x*2);
+      const filtrado = base.filter(x=>x>3);
+      const suma = base.reduce((acc,x)=>acc+x, 0);
+      const contiene = base.includes(9);
+
+      const out = { desdeIterable, desdeArgs, esArray, base, ordenado, mapeado, filtrado, suma, contiene };
+      document.getElementById('vista-array').textContent = JSON.stringify(out, null, 2);
+      log('Array: isArray/from/of + sort/map/filter/reduce/includes demostrados.');
+    }
+
+    // ===== (c) NUMBER =====
+    function verPropsNumber(){
+      const info = {
+        MAX_VALUE: Number.MAX_VALUE,
+        MIN_VALUE: Number.MIN_VALUE,
+        EPSILON: Number.EPSILON,
+        MAX_SAFE_INTEGER: Number.MAX_SAFE_INTEGER,
+        MIN_SAFE_INTEGER: Number.MIN_SAFE_INTEGER,
+        POSITIVE_INFINITY: Number.POSITIVE_INFINITY,
+        NEGATIVE_INFINITY: Number.NEGATIVE_INFINITY,
+        NaN: Number.NaN
+      };
+      document.getElementById('vista-number').textContent = JSON.stringify(info, null, 2);
+      log('Number: constantes consultadas.');
+    }
+
+    function demoNumberMetodos(){
+      const raw = document.getElementById('numEntrada').value.trim() || '1234.567';
+      const n = Number.parseFloat(raw);          // == parseFloat
+      const finito = Number.isFinite(n);
+      const entero = Number.isInteger(n);
+      const fixed2 = n.toFixed(2);               // formato con 2 decimales
+      const prec4 = n.toPrecision(4);            // 4 cifras significativas
+
+      const out = { entrada: raw, n, finito, entero, fixed2, prec4 };
+      document.getElementById('vista-number').textContent = JSON.stringify(out, null, 2);
+      log('Number: isFinite/parseFloat/toFixed/toPrecision demostrados.');
+    }
+  </script>
+</body>
+</html>

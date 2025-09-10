@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Experiencia de Práctica Nº 05 — Uso de Arrays (JS)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root { --b:#0b1020; --c:#cfe3ff; --g:#ddd; }
+    body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; }
+    header h1 { margin-bottom: .25rem; }
+    header p { margin-top: 0; color: #555; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+    @media (min-width: 900px){ .grid { grid-template-columns: 1fr 1fr; } }
+    .panel { border: 1px solid var(--g); border-radius: 12px; padding: 1rem; }
+    .panel h2 { margin-top: 0 }
+    .btns { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+    button { padding: .5rem .9rem; border-radius: 8px; border: 1px solid #ccc; cursor: pointer; }
+    input, select { padding: .45rem .6rem; border: 1px solid #ccc; border-radius: 8px; }
+    .row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin: .4rem 0; }
+    #screenlog { background: var(--b); color: var(--c); padding: 1rem; min-height: 240px; white-space: pre-wrap; border-radius: 12px; }
+    code { background: #f6f8fa; padding: .1rem .3rem; border-radius: 4px; }
+    .pill { display:inline-block; border:1px solid #ccc; border-radius:999px; padding:.15rem .5rem; margin:.1rem; background:#fafafa }
+    .list { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Experiencia de Práctica Nº 05: Uso de Arrays</h1>
+    <p>Guía de Prácticas — Fundamentos de JavaScript I</p>
+  </header>
+
+  <!-- Consola en pantalla -->
+  <section class="panel">
+    <h2>Consola en pantalla</h2>
+    <div id="screenlog" aria-live="polite"></div>
+    <div class="btns">
+      <button onclick="clearScreen()">Limpiar pantalla</button>
+      <button onclick="console.clear(); log('Consola del navegador limpiada.')">Limpiar consola del navegador</button>
+      <button onclick="dumpEstado()">Mostrar estado de los 3 arrays</button>
+    </div>
+  </section>
+
+  <div class="grid">
+    <!-- (a) CREACIÓN DE ARRAYS -->
+    <section class="panel" id="a-creacion">
+      <h2>(a) Creación de arrays + ingreso de datos</h2>
+      <p>Se crean **tres arreglos** (numérico, de cadenas y de objetos) mediante **tres métodos**: literal <code>[]</code>, constructor <code>new Array()</code> y fábrica <code>Array.of()</code>. Luego ingresa elementos y visualiza.</p>
+
+      <div class="row">
+        <strong>Método de creación:</strong>
+        <span class="pill">Literal []</span>
+        <span class="pill">new Array()</span>
+        <span class="pill">Array.of()</span>
+      </div>
+
+      <div class="btns">
+        <button onclick="crearArrays()">Crear los 3 arrays</button>
+        <button onclick="visualizarArrays()">Visualizar arrays</button>
+      </div>
+
+      <hr/>
+
+      <h3>Ingreso de datos</h3>
+      <div class="row">
+        <label for="tipo">Array destino:</label>
+        <select id="tipo">
+          <option value="num">numérico</option>
+          <option value="str">strings</option>
+          <option value="obj">objetos</option>
+        </select>
+        <input id="valor" placeholder='valor (p.ej. 42 | "hola" | {"id":1,"nombre":"Ana"})' size="45" />
+        <button onclick="ingresar()">Ingresar</button>
+      </div>
+      <p class="list"><strong>Representación actual</strong></p>
+      <pre class="list" id="vista-a"></pre>
+    </section>
+
+    <!-- (b) MANIPULACIÓN DE ARRAYS -->
+    <section class="panel" id="b-manipulacion">
+      <h2>(b) Manipulación de arrays</h2>
+      <p>Acciones clásicas sobre **cada** arreglo: mutación, acceso y combinaciones. Ejecuta y observa los resultados.</p>
+
+      <div class="row">
+        <label for="arrSel">Operar sobre:</label>
+        <select id="arrSel">
+          <option value="num">numérico</option>
+          <option value="str">strings</option>
+          <option value="obj">objetos</option>
+        </select>
+      </div>
+
+      <div class="btns">
+        <button onclick="accion('push')">push</button>
+        <button onclick="accion('pop')">pop</button>
+        <button onclick="accion('shift')">shift</button>
+        <button onclick="accion('unshift')">unshift</button>
+        <button onclick="accion('splice')">splice</button>
+        <button onclick="accion('slice')">slice</button>
+        <button onclick="accion('concat')">concat</button>
+        <button onclick="accion('join')">join</button>
+        <button onclick="accion('sort')">sort</button>
+        <button onclick="accion('reverse')">reverse</button>
+        <button onclick="accion('includes')">includes</button>
+        <button onclick="accion('indexOf')">indexOf</button>
+        <button onclick="accion('flat')">flat</button>
+      </div>
+
+      <p class="list"><strong>Resultado</strong></p>
+      <pre class="list" id="vista-b"></pre>
+    </section>
+
+    <!-- (c) ITERADORES -->
+    <section class="panel" id="c-iteradores">
+      <h2>(c) Iteradores de arrays</h2>
+      <p>Aplica <code>forEach</code>, <code>map</code>, <code>filter</code>, <code>find</code>, <code>reduce</code>, <code>some</code>, <code>every</code> sobre los arreglos creados.</p>
+
+      <div class="row">
+        <label for="arrIter">Iterar sobre:</label>
+        <select id="arrIter">
+          <option value="num">numérico</option>
+          <option value="str">strings</option>
+          <option value="obj">objetos</option>
+        </select>
+      </div>
+
+      <div class="btns">
+        <button onclick="iterar('forEach')">forEach</button>
+        <button onclick="iterar('map')">map</button>
+        <button onclick="iterar('filter')">filter</button>
+        <button onclick="iterar('find')">find</button>
+        <button onclick="iterar('reduce')">reduce</button>
+        <button onclick="iterar('some')">some</button>
+        <button onclick="iterar('every')">every</button>
+      </div>
+
+      <p class="list"><strong>Resultado</strong></p>
+      <pre class="list" id="vista-c"></pre>
+    </section>
+  </div>
+
+  <script>
+    // ========= Utilidades de logging =========
+    const screen = document.getElementById('screenlog');
+    function log(...args) {
+      console.log(...args);
+      const msg = args.map(a => {
+        try { return typeof a === 'object' ? JSON.stringify(a) : String(a); }
+        catch { return String(a); }
+      }).join(' ');
+      screen.textContent += msg + '\n';
+    }
+    function clearScreen(){ screen.textContent = ''; }
+
+    // ========= Estado de la práctica =========
+    let arrNum = [];   // numérico ([], new Array, Array.of)
+    let arrStr = [];   // strings
+    let arrObj = [];   // objetos
+
+    // Metadatos: cómo fue creado cada uno (para mostrar en pantalla)
+    const meta = { num:'-', str:'-', obj:'-' };
+
+    function dumpEstado(){
+      log('--- ESTADO ---');
+      log('numérico:', arrNum);
+      log('strings :', arrStr);
+      log('objetos :', arrObj);
+      log('meta    :', meta);
+      log('------------');
+    }
+
+    // ========= (a) Creación + ingreso =========
+    function crearArrays(){
+      // 3 métodos: literal [], new Array(), Array.of()
+      arrNum = [1, 2, 3];                 meta.num = 'Literal []';
+      arrStr = new Array('uno','dos');    meta.str = 'new Array()';
+      arrObj = Array.of({id:1},{id:2});   meta.obj = 'Array.of()';
+
+      log('Creación completada:');
+      dumpEstado();
+      visualizarArrays();
+    }
+
+    function visualizarArrays(){
+      const vista = document.getElementById('vista-a');
+      vista.textContent =
+        'numérico ('+meta.num+'): ' + JSON.stringify(arrNum) + '\n' +
+        'strings  ('+meta.str+'): ' + JSON.stringify(arrStr) + '\n' +
+        'objetos  ('+meta.obj+'): ' + JSON.stringify(arrObj, null, 0);
+      log('Visualización (a) actualizada.');
+    }
+
+    // Ingreso de datos (parsing "inteligente")
+    function ingresar(){
+      const tipo = document.getElementById('tipo').value;
+      const raw  = document.getElementById('valor').value.trim();
+      if(!raw){ log('⚠ Ingrese un valor.'); return; }
+
+      let target;
+      if (tipo === 'num') target = arrNum;
+      if (tipo === 'str') target = arrStr;
+      if (tipo === 'obj') target = arrObj;
+
+      // Intento parse JSON; si falla, uso número o string
+      let val = raw;
+      try {
+        if (raw.startsWith('{') || raw.startsWith('[')) val = JSON.parse(raw);
+        else if (!Number.isNaN(Number(raw))) val = Number(raw);
+      } catch(e){ /* dejar como string */ }
+
+      target.push(val);
+      log(`Ingreso → ${tipo}:`, val);
+      visualizarArrays();
+    }
+
+    // ========= (b) Manipulación =========
+    function accion(op){
+      const cual = document.getElementById('arrSel').value;
+      let A = (cual==='num') ? arrNum : (cual==='str' ? arrStr : arrObj);
+      let out = '';
+
+      switch(op){
+        case 'push': out = A.push(prompt('push: valor a insertar (JSON/num/texto)') ?? ''); break;
+        case 'pop':  out = A.pop(); break;
+        case 'shift': out = A.shift(); break;
+        case 'unshift': out = A.unshift(prompt('unshift: valor a insertar al inicio') ?? ''); break;
+        case 'splice': {
+          const i = Number(prompt('splice: índice inicio', '0') ?? 0);
+          const c = Number(prompt('splice: cuantos eliminar', '1') ?? 1);
+          const v = prompt('splice: valor a insertar (opcional)');
+          out = (v===null || v==='') ? A.splice(i,c) : A.splice(i,c, parseMaybe(v));
+          break;
+        }
+        case 'slice': {
+          const i = Number(prompt('slice: inicio', '0') ?? 0);
+          const f = Number(prompt('slice: fin (exclusivo, opcional)') ?? A.length);
+          out = A.slice(i,f);
+          break;
+        }
+        case 'concat': out = A.concat(A); break;
+        case 'join': out = A.join(' | '); break;
+        case 'sort': {
+          if (cual==='obj') {
+            const k = prompt('sort objetos: clave (p.ej. id o nombre)', 'id') ?? 'id';
+            A.sort((a,b)=> (a?.[k]??'') > (b?.[k]??'') ? 1 : -1);
+          } else if (cual==='num') {
+            A.sort((a,b)=> Number(a)-Number(b));
+          } else {
+            A.sort();
+          }
+          out = A;
+          break;
+        }
+        case 'reverse': A.reverse(); out = A; break;
+        case 'includes': out = A.includes(parseMaybe(prompt('includes: valor a buscar','1') ?? '1')); break;
+        case 'indexOf': out = A.indexOf(parseMaybe(prompt('indexOf: valor a buscar','1') ?? '1')); break;
+        case 'flat': out = A.flat ? A.flat(2) : '(flat no disponible)'; break;
+      }
+
+      document.getElementById('vista-b').textContent =
+        `${op} → ${JSON.stringify(out)}\nActual: ${JSON.stringify(A)}`;
+      dumpEstado(); // también registra en la consola y pantalla
+    }
+
+    function parseMaybe(v){
+      try {
+        if (v.startsWith('{') || v.startsWith('[')) return JSON.parse(v);
+        const n = Number(v);
+        return Number.isNaN(n) ? v : n;
+      } catch { return v; }
+    }
+
+    // ========= (c) Iteradores =========
+    function iterar(kind){
+      const cual = document.getElementById('arrIter').value;
+      let A = (cual==='num') ? arrNum : (cual==='str' ? arrStr : arrObj);
+      let res;
+
+      switch(kind){
+        case 'forEach': {
+          let buff = [];
+          A.forEach((v,i)=> buff.push(`[${i}]=${fmt(v)}`));
+          res = buff.join(', ');
+          break;
+        }
+        case 'map': {
+          if (cual==='num') res = A.map(x => Number(x)*2);
+          else if (cual==='str') res = A.map(s => String(s).toUpperCase());
+          else res = A.map(o => ({...o, marcado:true}));
+          break;
+        }
+        case 'filter': {
+          if (cual==='num') res = A.filter(x => Number(x)%2===0);
+          else if (cual==='str') res = A.filter(s => String(s).length>=4);
+          else res = A.filter(o => 'id' in (o||{}));
+          break;
+        }
+        case 'find': {
+          if (cual==='num') res = A.find(x => Number(x)>10);
+          else if (cual==='str') res = A.find(s => String(s).includes('a'));
+          else res = A.find(o => (o||{}).id === 1);
+          break;
+        }
+        case 'reduce': {
+          if (cual==='num') res = A.reduce((acc,x)=> acc+Number(x), 0);
+          else if (cual==='str') res = A.reduce((acc,s)=> acc + String(s), '');
+          else res = A.reduce((acc,o)=> ({...acc, [o.id??('k'+acc._i)]:o, _i:(acc._i||0)+1}), {});
+          break;
+        }
+        case 'some': {
+          if (cual==='num') res = A.some(x => Number(x)<0);
+          else if (cual==='str') res = A.some(s => String(s).startsWith('a'));
+          else res = A.some(o => (o||{}).marcado===true);
+          break;
+        }
+        case 'every': {
+          if (cual==='num') res = A.every(x => !Number.isNaN(Number(x)));
+          else if (cual==='str') res = A.every(s => typeof s === 'string');
+          else res = A.every(o => typeof o === 'object' && o!==null);
+          break;
+        }
+      }
+
+      document.getElementById('vista-c').textContent =
+        `${kind} → ${fmt(res)}\nFuente: ${fmt(A)}`;
+      log(`Iterador ${kind} ejecutado sobre ${cual}.`);
+    }
+
+    function fmt(v){
+      try { return typeof v === 'string' ? v : JSON.stringify(v); }
+      catch { return String(v); }
+    }
+  </script>
+</body>
+</html>

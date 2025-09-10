@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Experiencia de Práctica Nº 04 — Uso de Objetos (JS)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; }
+    header h1 { margin-bottom: .25rem; }
+    header p { margin-top: 0; color: #555; }
+    .panel { border: 1px solid #ddd; border-radius: 10px; padding: 1rem; margin: 1rem 0; }
+    .btns { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+    button { padding: .5rem .9rem; border-radius: 8px; border: 1px solid #ccc; cursor: pointer; }
+    #screenlog { background: #0b1020; color: #cfe3ff; padding: 1rem; min-height: 220px; white-space: pre-wrap; border-radius: 10px; }
+    code { background: #f6f8fa; padding: .1rem .3rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Experiencia de Práctica Nº 04: Uso de Objetos</h1>
+    <p>Guía de Prácticas — Fundamentos de JavaScript I</p>
+  </header>
+
+  <main>
+    <!-- Consola en pantalla -->
+    <section class="panel">
+      <h2>Consola en pantalla</h2>
+      <div id="screenlog" aria-live="polite"></div>
+      <div class="btns">
+        <button onclick="clearScreen()">Limpiar pantalla</button>
+        <button onclick="console.clear(); log('Consola del navegador limpiada.')">Limpiar consola del navegador</button>
+      </div>
+    </section>
+
+    <!-- (a) CREACIÓN DE OBJETOS -->
+    <section class="panel" id="a-creacion">
+      <h2>a) Creación de objetos</h2>
+      <p>Demostración de las tres formas: literal, constructor y <code>Object.create()</code>.</p>
+      <div class="btns">
+        <button onclick="crearLiteral()">1) Literal (iniciador de objeto)</button>
+        <button onclick="crearConstructor()">2) Función constructora + prototype</button>
+        <button onclick="crearConCreate()">3) Object.create()</button>
+      </div>
+    </section>
+
+    <!-- (b) AGREGAR PROPIEDADES -->
+    <section class="panel" id="b-propiedades">
+      <h2>b) Agregando propiedades a los objetos</h2>
+      <p>Agregar/modificar propiedades con punto, corchetes, <code>prototype</code> y <code>defineProperty</code>.</p>
+      <div class="btns">
+        <button onclick="agregarALiteral()">Literal: punto/corchetes/método</button>
+        <button onclick="agregarAConstructor()">Constructor: instancia + prototype</button>
+        <button onclick="agregarACreate()">Object.create: propio + descriptor</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Utilidades
+    const screen = document.getElementById('screenlog');
+    function log(...args) {
+      console.log(...args);
+      const msg = args.map(a => {
+        try { return typeof a === 'object' ? JSON.stringify(a) : String(a); }
+        catch { return String(a); }
+      }).join(' ');
+      screen.textContent += msg + '\n';
+    }
+    function clearScreen(){ screen.textContent = ''; }
+
+    // Variables globales para reutilizar en (b)
+    let persona, Producto, item, vehiculoProto, auto;
+
+    // (a.1) Creación con literal
+    function crearLiteral() {
+      log('--- (a.1) Creación con literal ---');
+      persona = {
+        nombre: 'Ana',
+        edad: 20,
+        saluda() { return `Hola, soy ${this.nombre} (${this.edad})`; }
+      };
+      log('persona =', persona);
+      log('persona.saluda() →', persona.saluda());
+      log('--- Fin (a.1) ---');
+    }
+
+    // (a.2) Creación con función constructora + prototype
+    function crearConstructor() {
+      log('--- (a.2) Constructor + prototype ---');
+      function _Producto(nombre, precio) {
+        this.nombre = nombre;
+        this.precio = precio;
+      }
+      _Producto.prototype.total = function (cantidad = 1) {
+        return this.precio * cantidad;
+      };
+      Producto = _Producto;               // guardar en global para (b)
+      item = new Producto('Laptop', 2500);
+      log('item = new Producto("Laptop", 2500) →', item);
+      log('item.total(2) →', item.total(2));
+      log('--- Fin (a.2) ---');
+    }
+
+    // (a.3) Creación con Object.create()
+    function crearConCreate() {
+      log('--- (a.3) Object.create(proto, descriptors) ---');
+      vehiculoProto = {
+        arrancar() { return `Arrancando ${this.marca ?? '(sin marca)'}`; },
+        avanzar(km = 1) { this.km = (this.km ?? 0) + km; return this.km; }
+      };
+      auto = Object.create(vehiculoProto, {
+        marca: { value: 'Toyota', writable: true, enumerable: true },
+        km:    { value: 0,        writable: true, enumerable: true }
+      });
+      log('auto (con proto vehiculoProto) =', auto);
+      log('auto.arrancar() →', auto.arrancar());
+      log('auto.avanzar(5) →', auto.avanzar(5));
+      log('--- Fin (a.3) ---');
+    }
+
+    // (b.1) Agregar propiedades al literal
+    function agregarALiteral() {
+      log('--- (b.1) Agregar propiedades (literal) ---');
+      if (!persona) { log('⚠ Primero ejecuta (a.1)'); return; }
+      persona.apellido = 'Pérez';          // punto
+      persona['pais'] = 'PE';              // corchetes
+      persona.saluda = function() {        // reemplazar método
+        return `Hola, soy ${this.nombre} ${this.apellido} de ${this.pais}`;
+      };
+      log('persona modificada =', persona);
+      log('persona.saluda() →', persona.saluda());
+      log('--- Fin (b.1) ---');
+    }
+
+    // (b.2) Agregar propiedades al constructor (instancia + prototype)
+    function agregarAConstructor() {
+      log('--- (b.2) Agregar (constructor) ---');
+      if (!item || !Producto) { log('⚠ Primero ejecuta (a.2)'); return; }
+      item.descuento = 0.10;                                   // propiedad de instancia
+      Producto.prototype.categoria = 'Electrónicos';           // propiedad en el prototipo
+      Producto.prototype.neto = function(q = 1) {
+        const bruto = this.total(q);
+        return Math.round((bruto * (1 - (this.descuento ?? 0))) * 100) / 100;
+      };
+      log('item con descuento =', item);
+      log('item.neto(2) (usa prototype + this.descuento) →', item.neto(2));
+      const otro = new Producto('Mouse', 80);
+      log('otro =', otro, ' | otro.categoria (vía prototype) →', otro.categoria);
+      log('--- Fin (b.2) ---');
+    }
+
+    // (b.3) Agregar propiedades al creado con Object.create
+    function agregarACreate() {
+      log('--- (b.3) Agregar (Object.create) ---');
+      if (!auto) { log('⚠ Primero ejecuta (a.3)'); return; }
+      auto.color = 'Rojo';                                     // propia
+      Object.defineProperty(auto, 'anio', {                    // descriptor
+        value: 2024, writable: false, enumerable: true
+      });
+      log('auto modificado =', auto);
+      log('Intento de escribir auto.anio = 2025...');
+      try { auto.anio = 2025; } catch(e) {}
+      log('auto.anio (no cambia por writable:false) →', auto.anio);
+      log('auto.__proto__ === vehiculoProto →', auto.__proto__ === vehiculoProto);
+      log('--- Fin (b.3) ---');
+    }
+  </script>
+</body>
+</html>

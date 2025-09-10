@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Ejercicio 1 — Calculadora de Propinas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; }
+    .card { max-width: 400px; padding: 1.5rem; border: 1px solid #ddd; border-radius: 12px; }
+    label { display:block; margin-top:.8rem; }
+    input { width:100%; padding:.45rem .6rem; margin-top:.3rem; border:1px solid #ccc; border-radius:8px; }
+    button { margin-top:1rem; padding:.5rem .9rem; border-radius:8px; border:1px solid #ccc; cursor:pointer; }
+    #resultado { margin-top:1rem; background:#0b1020; color:#cfe3ff; padding:1rem; border-radius:10px; }
+  </style>
+</head>
+<body>
+  <h1>Ejercicio 1: Calculadora de Propinas</h1>
+  <div class="card">
+    <label for="cuenta">Monto total de la cuenta (S/):</label>
+    <input id="cuenta" type="number" step="0.01" placeholder="Ej. 150.00" />
+
+    <label for="porcentaje">Porcentaje de propina (%):</label>
+    <input id="porcentaje" type="number" step="1" placeholder="Ej. 10" />
+
+    <button onclick="calcularPropina()">Calcular</button>
+
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularPropina() {
+      const cuenta = parseFloat(document.getElementById('cuenta').value) || 0;
+      const porcentaje = parseFloat(document.getElementById('porcentaje').value) || 0;
+
+      const propina = cuenta * (porcentaje/100);
+      const total = cuenta + propina;
+
+      document.getElementById('resultado').innerHTML = `
+        Monto de la propina: S/ ${propina.toFixed(2)}<br>
+        Total a pagar: <strong>S/ ${total.toFixed(2)}</strong>
+      `;
+
+      console.log("Propina:", propina, "Total:", total);
+    }
+  </script>
+</body>
+</html>
