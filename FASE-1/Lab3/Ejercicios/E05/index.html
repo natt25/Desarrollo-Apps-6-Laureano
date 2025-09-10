@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outfitter — Galería en grupos de 3</title>
+<style>
+  :root{
+    --maxw: 1150px;
+    --gap: 22px;
+    --tile-h: 220px;     /* altura base de cada fila dentro del grupo */
+    --card: #f3f4f6;
+    --img-scale: 0.78;   /* controla el tamaño relativo de las imágenes */
+  }
+
+  *{ box-sizing:border-box }
+  body{ margin:0; font-family:system-ui,Segoe UI,Roboto,Arial; color:#0f172a }
+  .page{ max-width:var(--maxw); margin:0 auto; padding:28px 18px 48px }
+
+  /* Cabecera/hero */
+  .topbar{ display:flex; align-items:center; justify-content:space-between; margin-bottom:18px }
+  .brand{ font-weight:700 }
+  .hero{ display:grid; grid-template-columns:1fr auto; gap:16px; margin:16px 0 26px }
+  .hero h1{ margin:0 0 6px; font-size:clamp(20px,2.4vw + 10px,36px) }
+  .hero p{ margin:0; max-width:62ch; opacity:.85 }
+  .cta{ align-self:start; background:#0b0f1a; color:#fff; border:0; padding:12px 18px; border-radius:999px; font-weight:600 }
+
+  /* ===== CONTENEDOR DE GRUPOS ===== */
+  .gallery{
+    display:grid;
+    gap: var(--gap);
+  }
+
+  /* ===== GRUPO 3-PIEZAS ===== */
+  .triplet{
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(2, var(--tile-h));
+    gap: var(--gap);
+  }
+  .triplet .a{ grid-column:1; grid-row:1 / span 2; } /* grande izquierda */
+  .triplet .b{ grid-column:2; grid-row:1; }          /* derecha arriba */
+  .triplet .c{ grid-column:2; grid-row:2; }          /* derecha abajo  */
+
+  /* ===== PIEZA 2: VARIANTE INVERTIDA ===== */
+  .triplet--reverse{
+    grid-template-columns: 1fr 2fr;
+  }
+  .triplet--reverse .a{ grid-column:2; grid-row:1 / span 2; } /* grande derecha */
+  .triplet--reverse .b{ grid-column:1; grid-row:1; }
+  .triplet--reverse .c{ grid-column:1; grid-row:2; }
+
+  /* Tarjeta de producto */
+  .product{
+    background: var(--card);
+    border-radius: 14px;
+    display:flex; align-items:center; justify-content:center;
+    padding: 14px; overflow:hidden; position:relative;
+  }
+  .product img{
+    display:block;
+    width:auto; height:auto;
+    max-width: calc(var(--img-scale) * 100%);
+    max-height: calc(var(--img-scale) * 100%);
+    object-fit: contain;
+    filter: drop-shadow(0 10px 18px rgba(0,0,0,.06));
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px){
+    .hero{ grid-template-columns: 1fr }
+    .triplet, .triplet--reverse{
+      grid-template-columns: 1.4fr 1fr;
+      --tile-h: 200px;
+    }
+  }
+  @media (max-width: 520px){
+    .gallery{ gap: 14px }
+    .triplet, .triplet--reverse{
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+      grid-auto-rows: 200px;
+    }
+    .triplet .a, .triplet .b, .triplet .c,
+    .triplet--reverse .a, .triplet--reverse .b, .triplet--reverse .c{
+      grid-column:1; grid-row:auto;
+    }
+    .product img{ --img-scale: 0.82; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="brand">Outfitter</div>
+    <div aria-hidden="true">🛒 🔍 ⋯</div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div>
+      <h1>Bienvenido a Outfitter</h1>
+      <p>Ya sea que se trate de pescar, descender por los ríos de nuestro país o vivir la aventura de senderismo de tu vida, 
+        te equipamos con la ropa y el material necesarios para hacer que tu viaje sea cómodo e inolvidable.</p>
+    </div>
+    <button class="cta">COMPRAR LA COLECCIÓN</button>
+  </section>
+
+  <!-- Galeria -->
+  <section class="gallery" aria-label="Catálogo">
+    <!-- Grupo 1 -->
+    <div class="triplet">
+      <article class="product a"><img src="img/boots.png"        alt="Botas"></article>
+      <article class="product b"><img src="img/shorts-denim.png" alt="Shorts denim"></article>
+      <article class="product c"><img src="img/vest-brown.png"   alt="Chaleco marrón"></article>
+    </div>
+
+    <!-- Grupo 2 (invertido) -->
+    <div class="triplet triplet--reverse">
+      <article class="product a"><img src="img/headlamp.png"     alt="Linterna frontal"></article>
+      <article class="product b"><img src="img/kid-shorts.png"   alt="Short niño"></article>
+      <article class="product c"><img src="img/vest-red.png"     alt="Chaleco rojo"></article>
+    </div>
+
+    <!-- Grupo 3 -->
+    <div class="triplet">
+      <article class="product a"><img src="img/shirt-blue.png"   alt="Camisa celeste"></article>
+      <article class="product b"><img src="img/boots-rain.png"   alt="Botas de lluvia"></article>
+      <article class="product c"><img src="img/backpack.png"     alt="Mochila roja"></article>
+    </div>
+  </section>
+</main>
+</body>
+</html>
