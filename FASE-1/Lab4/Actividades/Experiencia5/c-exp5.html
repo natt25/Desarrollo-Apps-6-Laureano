@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>(c) Iteradores de Arrays — Práctica 05</title>
+</head>
+<body>
+  <h1>(c) Iteradores de Arrays</h1>
+
+  <button id="cargar">Cargar datos ejemplo</button>
+  <hr>
+  <button id="itFor">for (numérico)</button>
+  <button id="itForEach">forEach (strings)</button>
+  <button id="itWhile">while (objetos)</button>
+  <button id="itDoWhile">do...while (objetos)</button>
+
+  <script>
+    let arrNum = [];
+    let arrStr = [];
+    let arrObj = [];
+
+    document.getElementById("cargar").onclick = () => {
+      console.clear(); // limpia consola para que quede ordenado
+      arrNum = [3, 7, 12, 5];
+      arrStr = ["Arequipa", "Cusco", "Lima"];
+      arrObj = [
+        {nombre:"Ana", edad:22, ciudad:"Lima"},
+        {nombre:"Luis", edad:17, ciudad:"Cusco"}
+      ];
+      console.log("=== Arreglos cargados ===");
+      console.log("Numérico:", arrNum);
+      console.log("Strings :", arrStr);
+      console.log("Objetos :", arrObj);
+    };
+
+    document.getElementById("itFor").onclick = () => {
+      console.log("=== Iterador for sobre arrNum ===");
+      for (let i=0; i<arrNum.length; i++) {
+        console.log("for →", i, arrNum[i]);
+      }
+    };
+
+    document.getElementById("itForEach").onclick = () => {
+      console.log("=== Iterador forEach sobre arrStr ===");
+      arrStr.forEach((s,i) => console.log("forEach →", i, s));
+    };
+
+    document.getElementById("itWhile").onclick = () => {
+      console.log("=== Iterador while sobre arrObj ===");
+      let i=0;
+      while (i < arrObj.length) {
+        console.log("while →", i, arrObj[i]);
+        i++;
+      }
+    };
+
+    document.getElementById("itDoWhile").onclick = () => {
+      if (arrObj.length === 0) {
+        console.log("arrObj vacío, no hay datos.");
+        return;
+      }
+      console.log("=== Iterador do...while sobre arrObj ===");
+      let i=0;
+      do {
+        console.log("do...while →", i, arrObj[i]);
+        i++;
+      } while (i < arrObj.length);
+    };
+  </script>
+</body>
+</html>

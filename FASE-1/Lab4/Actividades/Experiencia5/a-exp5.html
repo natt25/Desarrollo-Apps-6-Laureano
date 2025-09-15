@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>(a) Creación de Arrays — Práctica 05</title>
+</head>
+<body>
+  <h1>(a) Creación de Arrays</h1>
+  <button id="crearNum">Crear numérico</button>
+  <button id="crearStr">Crear strings</button>
+  <button id="crearObj">Crear objetos</button><br></br>
+  <button id="ingNum">Agregar número</button>
+  <button id="ingStr">Agregar string</button>
+  <button id="ingObj">Agregar objeto</button>
+
+  <script>
+    let arrNum = [];
+    let arrStr = [];
+    let arrObj = [];
+
+    // Crear numérico
+    document.getElementById("crearNum").onclick = () => {
+      const a = [3, 7, 12];                 // []
+      const b = new Array(5, 8, 1);         // new Array()
+      const c = Array.of(10, 20, 30);       // Array.of()
+      arrNum = [...a, ...b, ...c];
+      console.log("Arreglo numérico:", arrNum);
+    };
+
+    // Crear strings
+    document.getElementById("crearStr").onclick = () => {
+      const a = ["Arequipa", "Cusco"];
+      const b = new Array("Lima", "Tacna");
+      const c = Array.of("Piura");
+      arrStr = [...a, ...b, ...c];
+      console.log("Arreglo de strings:", arrStr);
+    };
+
+    // Crear objetos
+    document.getElementById("crearObj").onclick = () => {
+      const a = [{ nombre:"Ana", edad:22, ciudad:"Lima" }];
+      const b = new Array({ nombre:"Luis", edad:17, ciudad:"Cusco" });
+      const c = Array.of({ nombre:"Rosa", edad:28, ciudad:"Arequipa" });
+      arrObj = [...a, ...b, ...c];
+      console.log("Arreglo de objetos:", arrObj);
+    };
+
+    // Ingreso de datos
+    document.getElementById("ingNum").onclick = () => {
+      const v = prompt("Ingresa un número:");
+      if (!isNaN(Number(v))) {
+        arrNum.push(Number(v));
+        console.log("Nuevo numérico:", arrNum);
+      }
+    };
+
+    document.getElementById("ingStr").onclick = () => {
+      const v = prompt("Ingresa un string:");
+      if (v) {
+        arrStr.push(v);
+        console.log("Nuevo strings:", arrStr);
+      }
+    };
+
+    document.getElementById("ingObj").onclick = () => {
+      const nombre = prompt("Nombre:");
+      const edad = prompt("Edad:");
+      const ciudad = prompt("Ciudad:");
+      if (nombre && !isNaN(Number(edad)) && ciudad) {
+        arrObj.push({ nombre, edad:Number(edad), ciudad });
+        console.log("Nuevo objetos:", arrObj);
+      }
+    };
+  </script>
+</body>
+</html>

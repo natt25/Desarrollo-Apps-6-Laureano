@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>(b) Manipulación de Arrays — Práctica 05</title>
+</head>
+<body>
+  <h1>(b) Manipulación de Arrays</h1>
+  <p>Abre la consola del navegador (F12) para ver los resultados.</p>
+
+  <button id="cargar">Cargar datos ejemplo</button>
+  <hr>
+
+  <h3>Acciones — Numérico (arrNum)</h3>
+  <button data-act="num_push">push(10)</button>
+  <button data-act="num_pop">pop()</button>
+  <button data-act="num_unshift">unshift(0)</button>
+  <button data-act="num_shift">shift()</button>
+  <button data-act="num_splice">splice(1,1)</button>
+  <button data-act="num_sort">sort()</button>
+  <button data-act="num_reverse">reverse()</button>
+
+  <hr>
+  <h3>Acciones — Strings (arrStr)</h3>
+  <button data-act="str_push">push("Lima")</button>
+  <button data-act="str_pop">pop()</button>
+  <button data-act="str_sort">sort()</button>
+  <button data-act="str_reverse">reverse()</button>
+  <button data-act="str_indexOf">indexOf("Lima")</button>
+  <button data-act="str_includes">includes("Lima")</button>
+
+  <hr>
+  <h3>Acciones — Objetos (arrObj)</h3>
+  <button data-act="obj_push">push({…}) ejemplo</button>
+  <button data-act="obj_pop">pop()</button>
+  <button data-act="obj_unshift">unshift({…}) ejemplo</button>
+  <button data-act="obj_shift">shift()</button>
+  <button data-act="obj_splice">splice(1,1)</button>
+
+  <script>
+    let arrNum = [];
+    let arrStr = [];
+    let arrObj = [];
+
+    document.getElementById("cargar").onclick = () => {
+      console.clear();
+      arrNum = [3, 7, 12, 5];
+      arrStr = ["Arequipa", "Cusco", "Lima"];
+      arrObj = [
+        { nombre: "Ana",  edad: 22, ciudad: "Lima" },
+        { nombre: "Luis", edad: 17, ciudad: "Cusco" },
+        { nombre: "Rosa",  edad: 28, ciudad: "Arequipa" }
+      ];
+      console.log("=== Arreglos cargados ===");
+      console.log("Numérico:", arrNum);
+      console.log("Strings :", arrStr);
+      console.log("Objetos :", arrObj);
+    };
+
+    document.querySelectorAll("[data-act]").forEach(btn => {
+      btn.onclick = () => {
+        const act = btn.getAttribute("data-act");
+        switch (act) {
+          // Numérico
+          case "num_push":    arrNum.push(10); break;
+          case "num_pop":     arrNum.pop(); break;
+          case "num_unshift": arrNum.unshift(0); break;
+          case "num_shift":   arrNum.shift(); break;
+          case "num_splice":  arrNum.splice(1, 1); break;
+          case "num_sort":    arrNum.sort((a,b)=>a-b); break;
+          case "num_reverse": arrNum.reverse(); break;
+
+          // Strings
+          case "str_push":    arrStr.push("Lima"); break;
+          case "str_pop":     arrStr.pop(); break;
+          case "str_sort":    arrStr.sort(); break;
+          case "str_reverse": arrStr.reverse(); break;
+          case "str_indexOf": console.log("indexOf('Lima') =", arrStr.indexOf("Lima")); return;
+          case "str_includes":console.log("includes('Lima') =", arrStr.includes("Lima")); return;
+
+          // Objetos
+          case "obj_push":    arrObj.push({ nombre:"Ejemplo", edad:18, ciudad:"Ejemplo" }); break;
+          case "obj_pop":     arrObj.pop(); break;
+          case "obj_unshift": arrObj.unshift({ nombre:"Inicio", edad:20, ciudad:"Inicio" }); break;
+          case "obj_shift":   arrObj.shift(); break;
+          case "obj_splice":  arrObj.splice(1, 1); break;
+
+          default: break;
+        }
+        console.log("Numérico:", arrNum, "Strings:", arrStr, "Objetos:", arrObj);
+      };
+    });
+  </script>
+</body>
+</html>
