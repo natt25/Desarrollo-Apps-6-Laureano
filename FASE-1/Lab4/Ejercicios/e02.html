@@ -1,74 +1,124 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <title>Ejercicio 2 — Conversor de Temperatura</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <title>Conversor de Temperatura</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; }
-    .card { max-width: 460px; padding: 1.25rem; border: 1px solid #ddd; border-radius: 12px; }
-    .row { display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; }
-    label { display:block; margin-top:.75rem; }
-    input[type="number"] { width: 100%; padding:.5rem .6rem; border:1px solid #ccc; border-radius:8px; }
-    button { margin-top:1rem; padding:.55rem .95rem; border-radius:8px; border:1px solid #ccc; cursor:pointer; }
-    #salida { margin-top:1rem; background:#0b1020; color:#cfe3ff; padding:1rem; border-radius:10px; white-space:pre-wrap; }
-    .muted { color:#666; font-size:.95rem; }
+    :root{
+      --bg:#0f172a;        /* fondo oscuro */
+      --card:#111827;      /* tarjeta */
+      --txt:#e5e7eb;       /* texto */
+      --muted:#9ca3af;     /* texto secundario */
+      --accent:#22d3ee;    /* cian */
+      --accent-2:#60a5fa;  /* azul */
+      --btn:#1f2937;       /* botón base */
+      --btn-h:#374151;     /* hover */
+      --ring: rgba(34,211,238,.35);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; min-height:100vh; display:grid; place-items:center;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(96,165,250,.15), transparent 60%),
+                  radial-gradient(900px 500px at -10% 110%, rgba(34,211,238,.12), transparent 60%),
+                  var(--bg);
+      color:var(--txt); font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    }
+    .card{
+      width:min(680px, 92vw);
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px; padding:26px 24px 22px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
+    }
+    h1{
+      margin:0 0 4px; font-weight:700; letter-spacing:.2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      font-size: clamp(1.4rem, 1.1rem + 1.2vw, 1.9rem);
+    }
+    p.desc{ margin:.2rem 0 1.1rem; color:var(--muted); font-size:.95rem }
+    .grid{
+      display:grid; gap:12px; grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
+      margin-top:6px;
+    }
+    .panel{
+      background:var(--card); border:1px solid rgba(255,255,255,.06);
+      border-radius:14px; padding:16px 14px;
+    }
+    .panel h2{
+      margin:0 0 10px; font-size:1.02rem; font-weight:650; color:#eaf2ff;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+      width:100%; padding:12px 14px; border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, var(--btn), #121826);
+      color:#f3f4f6; font-weight:600; border-radius:12px; cursor:pointer;
+      transition: transform .05s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+      user-select:none;
+    }
+    .btn:hover{ background:linear-gradient(180deg, var(--btn-h), #121826); border-color:rgba(255,255,255,.18) }
+    .btn:active{ transform: translateY(1px) }
+    .btn:focus-visible{ outline: none; box-shadow: 0 0 0 6px var(--ring) }
+    .hint{
+      margin-top:14px; color:var(--muted); font-size:.9rem; text-align:center;
+      border-top:1px dashed rgba(255,255,255,.12); padding-top:10px;
+    }
+    code{ background:rgba(255,255,255,.06); padding:.12rem .38rem; border-radius:6px }
   </style>
 </head>
 <body>
-  <h1>Ejercicio 2: Conversor de Temperatura</h1>
-
   <div class="card">
-    <div class="row">
-      <strong>Escala de entrada:</strong>
-      <label><input type="radio" name="escala" value="C" checked> Celsius (°C)</label>
-      <label><input type="radio" name="escala" value="F"> Fahrenheit (°F)</label>
+    <h1>Conversor de Temperatura</h1>
+
+    <div class="grid">
+      <div class="panel">
+        <h2>Celsius → Fahrenheit</h2>
+        <button class="btn" id="btnCelsius" aria-label="Convertir de Celsius a Fahrenheit">
+          Ingresar °C y convertir
+        </button>
+      </div>
+      <div class="panel">
+        <h2>Fahrenheit → Celsius</h2>
+        <button class="btn" id="btnFahrenheit" aria-label="Convertir de Fahrenheit a Celsius">
+          Ingresar °F y convertir
+        </button>
+      </div>
     </div>
 
-    <label for="valor">Temperatura:</label>
-    <input id="valor" type="number" step="0.01" placeholder="Ej. 25.0" />
-
-    <button onclick="convertir()">Convertir</button>
-
-    <div id="salida" aria-live="polite"></div>
-    <p class="muted">También se imprime el resultado en la consola del navegador.</p>
+    <p class="hint">
+      Fórmulas: <code>F = C × 9/5 + 32</code> · <code>C = (F − 32) × 5/9</code>
+    </p>
   </div>
 
   <script>
-    // --- Funciones puras de conversión ---
-    function cToF(c) { return (c * 9/5) + 32; }   // Celsius -> Fahrenheit
-    function fToC(f) { return (f - 32) * 5/9; }   // Fahrenheit -> Celsius
+    // Funciones puras de conversión
+    function celsiusAFahrenheit(c) { return (c * 9/5) + 32; }
+    function fahrenheitACelsius(f) { return (f - 32) * 5/9; }
 
-    // --- Lógica de UI ---
-    function convertir() {
-      const escala = document.querySelector('input[name="escala"]:checked').value;
-      const raw = document.getElementById('valor').value;
-      const n = Number(raw);
-
-      const out = document.getElementById('salida');
-      if (Number.isNaN(n)) {
-        out.textContent = '⚠ Ingresa un número válido.';
-        console.warn('Entrada no numérica:', raw);
+    // Interacción: solicita por prompt y muestra por consola
+    document.getElementById("btnCelsius").onclick = () => {
+      const valor = prompt("Ingresa la temperatura en °C:");
+      if (valor === null || valor.trim() === "" || isNaN(valor)) {
+        console.log("Entrada no válida.");
         return;
       }
+      const c = parseFloat(valor);
+      const f = celsiusAFahrenheit(c);
+      console.log(`${c} °C = ${f.toFixed(2)} °F`);
+    };
 
-      let resultado, txt;
-      if (escala === 'C') {
-        resultado = cToF(n);
-        txt = `${n.toFixed(2)} °C  =  ${resultado.toFixed(2)} °F`;
-      } else {
-        resultado = fToC(n);
-        txt = `${n.toFixed(2)} °F  =  ${resultado.toFixed(2)} °C`;
+    document.getElementById("btnFahrenheit").onclick = () => {
+      const valor = prompt("Ingresa la temperatura en °F:");
+      if (valor === null || valor.trim() === "" || isNaN(valor)) {
+        console.log("Entrada no válida.");
+        return;
       }
-
-      out.textContent = txt;
-      console.log('[Conversor]', txt);
-    }
-
-    // Accesibilidad: permitir Enter en el input
-    document.getElementById('valor').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') convertir();
-    });
+      const f = parseFloat(valor);
+      const c = fahrenheitACelsius(f);
+      console.log(`${f} °F = ${c.toFixed(2)} °C`);
+    };
   </script>
 </body>
 </html>
