@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>(a) Uso de objeto Window — Práctica 06</title>
+</head>
+<body>
+  <h1>(a) Uso de objeto Window</h1>
+
+  <button id="btnProps">Ver propiedades de window</button>
+  <button id="btnMetodos">Usar métodos de window</button>
+
+  <script>
+    // 1) Visualizar propiedades del objeto Window
+    function verPropiedadesWindow() {
+      console.clear();
+      console.log("=== PROPIEDADES window ===");
+      console.log("innerWidth:", window.innerWidth);
+      console.log("innerHeight:", window.innerHeight);
+      console.log("location.href:", window.location.href);
+      console.log("location.origin:", window.location.origin);
+      console.log("navigator.userAgent:", window.navigator.userAgent);
+      console.log("history.length:", window.history.length);
+      console.log("screen.width x screen.height:", window.screen.width, "x", window.screen.height);
+      // cantidad de propiedades enumerables (referencial)
+      console.log("Propiedades enumerables (conteo aprox.):", Object.keys(window).length);
+    }
+
+    // 2) Usar algunos métodos del objeto Window
+    function usarMetodosWindow() {
+      console.log("=== MÉTODOS window ===");
+      console.log("setTimeout → mensaje en 500ms");
+      window.setTimeout(() => console.log("setTimeout: ¡Hola desde window!"), 500);
+
+      const resp = window.confirm("¿Continuar? (window.confirm)");
+      console.log("confirm →", resp);
+
+      // alert es visible; lo dejamos breve
+      window.alert("window.alert: ejemplo corto");
+    }
+
+    document.getElementById("btnProps").onclick = verPropiedadesWindow;
+    document.getElementById("btnMetodos").onclick = usarMetodosWindow;
+  </script>
+</body>
+</html>

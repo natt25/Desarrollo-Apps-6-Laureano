@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>(c) Uso de objeto Number — Práctica 06</title>
+</head>
+<body>
+  <h1>(c) Uso del objeto Number</h1>
+  <p>Abre la consola (F12) para ver resultados.</p>
+
+  <button id="btnProps">Ver propiedades de Number</button>
+  <button id="btnMetodos">Usar métodos de Number</button>
+
+  <script>
+    // 1) Visualizar propiedades del objeto Number (estáticas y de instancia)
+    function verPropiedadesNumber() {
+      console.clear();
+      console.log("=== PROPIEDADES Number (estáticas) ===");
+      console.log("MAX_VALUE:", Number.MAX_VALUE);
+      console.log("MIN_VALUE:", Number.MIN_VALUE);
+      console.log("EPSILON:", Number.EPSILON);
+      console.log("NaN:", Number.NaN);
+      console.log("NEGATIVE_INFINITY:", Number.NEGATIVE_INFINITY);
+      console.log("POSITIVE_INFINITY:", Number.POSITIVE_INFINITY);
+
+      const n = 1234.56789;
+      console.log("=== PROPIEDADES/MÉTODOS (instancia) ===");
+      console.log("n:", n);
+      console.log("toFixed(2):", n.toFixed(2));          // método de instancia
+      console.log("toExponential(3):", n.toExponential(3));
+      console.log("toString(16):", n.toString(16));      // representación hexadecimal
+    }
+
+    // 2) Usar algunos métodos del objeto Number (estáticos e instancia)
+    function usarMetodosNumber() {
+      console.log("=== MÉTODOS Number ===");
+      console.log("Number.isInteger(10):", Number.isInteger(10));
+      console.log("Number.isInteger(10.5):", Number.isInteger(10.5));
+      console.log("Number.isNaN(NaN):", Number.isNaN(NaN));
+      console.log("Number.parseFloat('3.14'):", Number.parseFloat("3.14"));
+      console.log("Number.parseInt('101', 2):", Number.parseInt("101", 2)); // binario → 5
+
+      const x = 42.6789;
+      console.log("x:", x, "| x.toFixed(1):", x.toFixed(1), "| x.toPrecision(3):", x.toPrecision(3));
+    }
+
+    document.getElementById("btnProps").onclick = verPropiedadesNumber;
+    document.getElementById("btnMetodos").onclick = usarMetodosNumber;
+  </script>
+</body>
+</html>

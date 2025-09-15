@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>(b) Uso de objeto Array — Práctica 06</title>
+</head>
+<body>
+  <h1>(b) Uso del objeto Array</h1>
+  <p>Abre la consola (F12) para ver resultados.</p>
+
+  <button id="btnProps">Ver propiedades de Array</button>
+  <button id="btnMetodos">Usar métodos de Array</button>
+
+  <script>
+    // Arreglo de ejemplo
+    let arr = [5, 2, 9];
+
+    // 1) Visualizar propiedades del objeto Array
+    function verPropiedadesArray() {
+      console.clear();
+      console.log("=== PROPIEDADES Array (instancia) ===");
+      console.log("arr:", arr);
+      console.log("length:", arr.length);                // propiedad de instancia
+      console.log("constructor.name:", arr.constructor.name);
+      console.log("Array.isArray(arr):", Array.isArray(arr)); // propiedad/método estático de Array
+      // Propiedad estática del constructor Array
+      console.log("Array.prototype existe:", !!Array.prototype);
+      console.log("Ejemplo de índice 0:", arr[0]);
+    }
+
+    // 2) Usar algunos métodos del objeto Array
+    function usarMetodosArray() {
+      console.log("=== MÉTODOS Array (instancia) ===");
+      const copia = arr.slice(); // no muta el original
+      console.log("slice():", copia);
+
+      arr.push(7);                       // muta
+      console.log("push(7):", arr);
+
+      const last = arr.pop();            // muta
+      console.log("pop() →", last, "| arr:", arr);
+
+      arr.unshift(1);                    // muta
+      console.log("unshift(1):", arr);
+
+      const first = arr.shift();         // muta
+      console.log("shift() →", first, "| arr:", arr);
+
+      arr.sort((a,b)=>a-b);              // muta
+      console.log("sort(asc):", arr);
+
+      arr.reverse();                     // muta
+      console.log("reverse():", arr);
+
+      const mapeado = arr.map(x => x*2); // no muta
+      console.log("map(*2):", mapeado, "| arr:", arr);
+
+      const filtrado = arr.filter(x => x >= 5);
+      console.log("filter(>=5):", filtrado);
+
+      const suma = arr.reduce((acc, n)=>acc+n, 0);
+      console.log("reduce(suma):", suma);
+    }
+
+    document.getElementById("btnProps").onclick = verPropiedadesArray;
+    document.getElementById("btnMetodos").onclick = usarMetodosArray;
+  </script>
+</body>
+</html>
