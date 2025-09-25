@@ -1,0 +1,61 @@
+@use "./variables" as *;
+@use "./functions" as f;
+@use "./mixins" as m;
+
+/* --- Hero (decorativo) --- */
+.hero-e3 {
+  background: linear-gradient(135deg, $e3-nav-grad-a 0%, $e3-nav-grad-b 100%);
+  color: #fff; padding: 2rem 0;
+}
+
+/* --- Navbar personalizada --- */
+.nav-e3 {
+  /* degradado sutil sobre el color base */
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02)),
+    $e3-nav-bg;
+
+  .navbar-brand { font-weight: 700; letter-spacing: .2px; }
+  .nav-link {
+    color: $e3-text;
+    &:hover { color: #fff; }
+    &.active { color: #fff; position: relative; }
+    &.active::after {
+      content: ""; position: absolute; left: .25rem; right: .25rem; bottom: .2rem;
+      height: 2px; background: linear-gradient(90deg, $e3-nav-grad-a, $e3-nav-grad-b);
+      border-radius: 2px;
+    }
+  }
+}
+
+/* --- Dropdown con animación controlada por clases de Bootstrap --- */
+.dd-e3 {
+  /* estilos base */
+  background: $e3-dd-bg;
+  color: $e3-text;
+  border: 1px solid $e3-dd-border;
+  padding: .35rem 0;
+  min-width: 12rem;
+
+  .dropdown-item {
+    color: $e3-text;
+    font-size: f.px-to-rem(14);
+    &:hover { background: f.shade($e3-dd-bg, 10%); color: #fff; }
+  }
+
+  /* estado inicial (cuando Bootstrap la crea pero aún no está visible) */
+  opacity: 0;
+  transform: translateY(-6px) scale(.98);
+  transition: opacity .18s ease, transform .18s ease;
+
+  /* cuando Bootstrap agrega .show al ul.dropdown-menu */
+  &.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- Footer --- */
+.footer-e3 {
+  padding: 1rem 0; color: $e3-muted;
+}
