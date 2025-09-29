@@ -1,0 +1,54 @@
+body {
+  font-family: $font-stack;
+  background: $light;
+  color: $dark;
+  margin: 0;
+  padding: 0;
+}
+
+// Ejemplo de anidamiento
+.navbar {
+  background: $primary;
+  padding: $spacing-unit;
+
+  a {
+    color: $light;
+    text-decoration: none;
+    margin-right: rem(16);
+    @include transition(0.2s);
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+}
+
+.card {
+  background: white;
+  padding: $spacing-unit;
+  margin: $spacing-unit;
+  @include shadow();
+  @include rounded(12px);
+
+  h3 {
+    color: $primary;
+  }
+
+  p {
+    font-size: rem(14);
+  }
+
+  button {
+    background: $secondary;
+    color: $light;
+    border: none;
+    padding: rem(10) rem(20);
+    cursor: pointer;
+    @include rounded();
+    @include transition();
+
+    &:hover {
+      background: darken-color($secondary, 15%);
+    }
+  }
+}

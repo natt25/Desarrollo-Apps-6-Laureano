@@ -1,0 +1,16 @@
+@use "./variables" as *;
+@use "./functions" as f;
+
+*{ box-sizing:border-box }
+html, body{ height:100% }
+body{
+  margin:0; font-family:$font-base; font-size:$font-size-base; line-height:$line-height-base;
+  color:$color-text;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba($color-primary,.14), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, rgba($color-secondary,.12), transparent 60%),
+    $color-bg;
+}
+a{ color:palette(primary); text-decoration:none; }
+a:hover{ color:shade(palette(primary),8%); }
+img{ max-width:100%; height:auto; display:block }

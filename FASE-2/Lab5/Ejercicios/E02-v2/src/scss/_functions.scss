@@ -1,0 +1,9 @@
+// Función para oscurecer colores dinámicamente
+@function darken-color($color, $amount: 10%) {
+  @return darken($color, $amount);
+}
+
+// Función para calcular tamaño relativo
+@function rem($px) {
+  @return ($px / 16) * 1rem;
+}

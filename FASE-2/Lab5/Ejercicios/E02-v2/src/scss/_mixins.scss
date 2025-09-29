@@ -1,0 +1,14 @@
+// Sombra reutilizable
+@mixin shadow($color: rgba(0,0,0,0.2)) {
+  box-shadow: 0 4px 6px $color;
+}
+
+// Bordes redondeados
+@mixin rounded($radius: 8px) {
+  border-radius: $radius;
+}
+
+// Transición general
+@mixin transition($time: 0.3s) {
+  transition: all $time ease-in-out;
+}

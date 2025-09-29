@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reservas · AndeX Perú</title>
+  <link rel="stylesheet" href="dist/css/main.css" />
+  <meta name="description" content="Reserva tours con AndeX Perú. Asesoría personalizada y soporte 24/7.">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav__inner">
+      <div class="nav__brand">AndeX Perú</div>
+      <div class="nav__links">
+        <a href="index.html">Inicio</a>
+        <a href="servicios.html">Rutas</a>
+        <a href="contacto.html">Reservas</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header">
+    <div class="container">
+      <h1 class="header__title">Reservas & Asesoría</h1>
+      <p class="header__subtitle">Cuéntanos sobre tu viaje y te enviamos una propuesta en menos de 24 horas.</p>
+    </div>
+  </header>
+
+  <main class="container mt-5">
+    <div class="grid">
+      <section>
+        <article class="card">
+          <div class="card__body">
+            <h3 class="card__title">Solicitar cotización</h3>
+            <p class="card__text">Completa el formulario y un asesor te contactará con detalles, precios y disponibilidad.</p>
+
+            <form class="form mt-4" onsubmit="event.preventDefault(); alert('¡Gracias! Te responderemos pronto.');">
+              <div class="field">
+                <label for="n">Nombre completo</label>
+                <input id="n" type="text" placeholder="Tu nombre" required>
+              </div>
+              <div class="field">
+                <label for="e">Correo</label>
+                <input id="e" type="email" placeholder="tu@mail.com" required>
+              </div>
+              <div class="field">
+                <label for="r">Ruta de interés</label>
+                <input id="r" type="text" placeholder="Ej: Cusco Esencial, Colca, Huacachina…">
+              </div>
+              <div class="field">
+                <label for="m">Mensaje</label>
+                <textarea id="m" rows="4" placeholder="Fechas, número de personas, preferencias…"></textarea>
+              </div>
+              <div class="actions">
+                <button type="submit" class="btn-primary">Enviar</button>
+                <a class="btn-danger" href="index.html">Cancelar</a>
+              </div>
+            </form>
+          </div>
+        </article>
+      </section>
+
+      <aside>
+        <article class="card">
+          <div class="card__body">
+            <h3 class="card__title">Oficinas & Horarios</h3>
+            <p class="card__text">Av. Ejemplo 123, Cusco · Lun–Vie 9:00–18:00</p>
+            <p class="card__text">Soporte 24/7 para pasajeros en ruta.</p>
+          </div>
+        </article>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container"><small>&copy; 2025 · AndeX Perú</small></div>
+  </footer>
+</body>
+</html>

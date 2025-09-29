@@ -1,0 +1,38 @@
+@use "./variables" as *;
+@use "./functions" as f;
+@use "./mixins" as m;
+
+/* tarjetas */
+.card{ @include m.surface(); overflow:hidden;
+  &__body{ padding:$sp-5; }
+  &__title{ margin:0 0 $sp-2 0; font-size:f.px-to-rem(20) }
+  &__text{ margin:0; color:$color-muted }
+}
+
+/* hero/cta */
+.hero{ padding:$sp-6 0; text-align:center;
+  &__title{ margin:0 0 $sp-2 0; font-size:f.px-to-rem(28); font-weight:800; }
+  &__actions{ margin-top:$sp-4; display:flex; gap:$sp-3; justify-content:center; flex-wrap:wrap; }
+}
+
+/* botones generados por paleta */
+@each $name, $col in $palette{ .btn-#{$name}{ @include m.button($col) } }
+
+/* formulario básico */
+.form{ @include m.surface(); padding:$sp-5;
+  .field{ display:grid; gap:.4rem; margin-bottom:$sp-4;
+    label{ color:shade($color-text,-30%); font-size:f.px-to-rem(14) }
+    input, textarea{
+      padding:$sp-3; color:$color-text; background: shade($color-surface, 6%);
+      border:1px solid $border-soft; @include m.rounded(10px);
+      @include m.transition(border-color,.15s);
+      &:focus{ outline:none; border-color:$color-primary; box-shadow:0 0 0 f.px-to-rem(4) rgba($color-primary,.35) }
+    }
+  }
+}
+
+/* listados tipo “servicios” */
+.services{ display:grid; gap:$sp-4; grid-template-columns:1fr;
+  @media (min-width:768px){ grid-template-columns: repeat(2,1fr); }
+  @media (min-width:1100px){ grid-template-columns: repeat(3,1fr); }
+}

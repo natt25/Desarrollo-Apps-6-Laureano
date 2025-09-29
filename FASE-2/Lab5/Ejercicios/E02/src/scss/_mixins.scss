@@ -1,0 +1,24 @@
+@use "./variables" as v;
+@use "./functions" as f;
+
+@mixin surface($bg: v.$color-surface, $radius: v.$radius-md, $shadow: v.$shadow-md) {
+  background: $bg; border:1px solid v.$border-soft; border-radius:$radius; box-shadow:$shadow;
+}
+@mixin rounded($r: v.$radius-md){ border-radius:$r; }
+@mixin transition($props: all, $time:.18s, $ease:ease){ transition:$props $time $ease; }
+
+/* botón temático */
+@mixin button($bg, $fg:#fff){
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  padding: v.$sp-3 v.$sp-4; font-weight:700; cursor:pointer; border:1px solid f.shade($bg,-12%);
+  @include rounded(v.$radius-md);
+  background: linear-gradient(180deg, $bg, f.shade($bg,-10%)); color:$fg;
+  @include transition(background,.16s);
+  &:hover{ background: linear-gradient(180deg, f.shade($bg,6%), f.shade($bg,-4%)); }
+  &:active{ transform: translateY(1px); }
+  &:focus-visible{ outline:none; box-shadow:0 0 0 f.px-to-rem(6) rgba($bg,.35); }
+}
+
+/* sombras */
+@mixin shadow-sm { box-shadow: v.$shadow-sm; }
+@mixin shadow-md { box-shadow: v.$shadow-md; }
