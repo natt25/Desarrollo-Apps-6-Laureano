@@ -1,0 +1,14 @@
+{
+  "name": "exp2-sass",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "sass": "sass --watch src/scss:dist/css --style=expanded",
+    "build": "sass src/scss:dist/css --style=compressed --no-error-css",
+    "dev": "sass --watch src/scss:dist/css --style=expanded --source-map"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}
+

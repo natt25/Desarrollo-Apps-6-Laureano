@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test SASS</title>
+  <link rel="stylesheet" href="dist/css/main.css">
+</head>
+
+<header class="header">
+  <h1 class="title">Uso de SASS</h1>
+</header>
+
+<main class="layout">
+  <!-- Columna izquierda -->
+  <section class="content">
+    <h2>Contenido</h2>
+    <p>Estilos generados con SASS (variables de color/espaciado y función <code>px-to-rem</code>).</p>
+
+    <!-- Botones: prueba de mixin "button" -->
+    <div class="actions">
+      <button class="btn-primary">Primario</button>
+      <button class="btn-success">Éxito</button>
+      <button class="btn-secondary">Secundario</button>
+    </div>
+
+    <!-- Demostrador de funciones: px-to-rem y shade -->
+    <div class="demo-fx" style="margin-top:1rem">
+      <p class="demo-fx__title">Títulos con <code>px-to-rem()</code></p>
+      <p class="demo-fx__note">Fondo generado con <code>shade()</code> a partir del color secundario.</p>
+    </div>
+  </section>
+
+  <!-- Columna derecha -->
+  <aside class="sidebar">
+    <h2>Formulario</h2>
+    <div class="field">
+      <label>Nombre</label>
+      <input type="text" placeholder="Tu nombre">
+    </div>
+    <div class="field">
+      <label>Mensaje</label>
+      <textarea rows="3" placeholder="Escribe tu mensaje..."></textarea>
+    </div>
+    <button class="btn-submit">Enviar</button>
+  </aside>
+</main>
+
+<footer class="footer">
+  <small>&copy; 2025 · Experiencia 02</small>
+</footer>

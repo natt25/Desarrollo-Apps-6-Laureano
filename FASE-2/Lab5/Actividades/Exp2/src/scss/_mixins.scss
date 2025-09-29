@@ -1,0 +1,19 @@
+@use "./variables" as v;
+@use "./functions" as f;
+
+@mixin card($bg: v.$color-card, $radius: v.$radius-base) {
+  background: $bg;
+  border-radius: $radius;
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+@mixin button($bg, $fg:#fff) {
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: v.$space-1 v.$space-2; border-radius: v.$radius-base; border:0;
+  background: linear-gradient(180deg, $bg, f.shade($bg, -10%));
+  color:$fg; font-weight:600; cursor:pointer;
+  transition: filter .15s ease, transform .05s ease;
+  &:hover{ filter:brightness(1.1) }
+  &:active{ transform:translateY(1px) }
+}

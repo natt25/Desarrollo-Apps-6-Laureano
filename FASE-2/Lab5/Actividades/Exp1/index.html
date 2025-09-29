@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Experiencia 01</title>
+
+  <!-- Bootstrap 5-->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <!-- CSS personalizado -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header class="hero py-4">
+    <div class="container text-center">
+      <h1 class="mb-1">Página con Bootstrap</h1>
+    </div>
+  </header>
+
+  <!-- Navegación -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Navegación principal">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="#">Inicio</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false"
+              aria-label="Abrir navegación">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">Sección 1</a></li>
+          <li class="nav-item"><a class="nav-link" href="#componentes">Sección 2</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Sección 3</a></li>
+        </ul>
+        <form class="d-flex" role="search" aria-label="Buscar">
+          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
+          <button class="btn btn-outline-light" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="container my-4">
+    <div class="row g-4">
+      <!-- Columna principal -->
+      <section class="col-12 col-lg-8">
+        <h2 class="h4">Contenido</h2>
+        <p>
+          Área principal de la página: Sistema de cuadrícula
+          (<code>container</code>, <code>row</code>, <code>col-*</code>) y
+          componentes de Bootstrap.
+        </p>
+
+        <!-- Botones -->
+        <div class="mb-3">
+          <button class="btn btn-primary me-2">Primario</button>
+          <button class="btn btn-success me-2">Éxito</button>
+          <button class="btn btn-outline-secondary">Secundario</button>
+        </div>
+
+        <!-- Tabla -->
+        <div class="table-responsive">
+          <table class="table table-striped align-middle">
+            <thead class="table-light">
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th class="text-end">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td><td>Ana</td><td>20</td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-outline-primary">Ver</button>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td><td>Luis</td><td>22</td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-outline-primary">Ver</button>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td><td>Rosa</td><td>21</td>
+                <td class="text-end">
+                  <button class="btn btn-sm btn-outline-primary">Ver</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Tarjeta -->
+        <div id="componentes" class="card shadow-sm my-4" style="max-width: 28rem;">
+          <img src="logo.jpg" class="card-img-top" alt="Imagen de ejemplo">
+          <div class="card-body">
+            <h5 class="card-title">Componente Card</h5>
+            <p class="card-text">Tarjeta con imagen, título y botón.</p>
+            <a href="#" class="btn btn-primary">Más info</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Barra lateral -->
+      <aside class="col-12 col-lg-4">
+        <h2 class="h4">Barra lateral</h2>
+        <p>Información complementaria y un formulario.</p>
+
+        <!-- Formulario -->
+        <form id="contacto" class="border rounded-3 p-3 bg-light">
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input id="nombre" type="text" class="form-control" placeholder="Tu nombre" required>
+          </div>
+          <div class="mb-3">
+            <label for="correo" class="form-label">Correo</label>
+            <input id="correo" type="email" class="form-control" placeholder="ejemplo@mail.com" required>
+          </div>
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">Mensaje</label>
+            <textarea id="mensaje" class="form-control" rows="3" placeholder="Escribe tu mensaje..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-success w-100">Enviar</button>
+        </form>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="py-3 mt-4 footer-soft">
+    <div class="container text-center">
+      <small>&copy; Experiencia 01</small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 (JS con Popper) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"
+  ></script>
+
+  <!-- JS -->
+  <script src="main.js"></script>
+</body>
+</html>

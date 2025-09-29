@@ -1,0 +1,12 @@
+@use "sass:math";
+@use "./variables" as v;
+
+@function px-to-rem($px, $base: v.$font-size-base) {
+  $px-val: if(math.is-unitless($px), $px * 1px, $px);
+  $base-val: if(math.is-unitless($base), $base * 1px, $base);
+  @return math.div($px-val, $base-val) * 1rem;
+}
+
+@function shade($color, $amount) {
+  @return if($amount > 0, lighten($color, $amount), darken($color, abs($amount)));
+}

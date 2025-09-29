@@ -1,0 +1,63 @@
+@use "./variables" as *;
+@use "./functions" as f;
+@use "./mixins" as m;
+
+* { box-sizing: border-box; }
+
+body{
+  margin:0;
+  font-family:$font-base;
+  font-size:$font-size-base;
+  color:$color-text;
+  background: $color-bg;
+}
+
+.header{
+  background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+  color:#fff;
+  padding: $space-3;
+
+  .title{ margin:0; font-size: f.px-to-rem(28); font-weight:800; }
+  .subtitle{ margin:.25rem 0 0; color: rgba(255,255,255,.9); }
+}
+
+.layout{
+  max-width: 1100px; margin: $space-3 auto; padding: 0 $space-2;
+  display:grid; gap:$space-2; grid-template-columns: 1fr;
+
+  @media (min-width: 992px){ grid-template-columns: 2fr 1fr; }
+
+  .content, .sidebar{
+    @include m.card();   /* ← ahora sí encuentra el mixin */
+    padding:$space-2;
+  }
+
+  .content{
+    h2{ margin:0 0 $space-1 0; font-size:f.px-to-rem(22); }
+    p{ color:$color-muted; }
+
+    .actions{
+      margin-top:$space-2; display:flex; gap:$space-1; flex-wrap:wrap;
+      .btn-primary{ @include m.button($color-primary); }
+      .btn-success{ @include m.button(#16a34a); }
+      .btn-secondary{ @include m.button(#475569); }
+    }
+  }
+
+  .sidebar{
+    h2{ margin:0 0 $space-1 0; }
+    .field{
+      display:grid; gap:.35rem; margin-bottom:.8rem;
+      label{ color:f.shade($color-text, -35%); }
+      input, textarea{
+        padding:.6rem .7rem; border-radius:10px;
+        border:1px solid rgba(255,255,255,.12); background:$color-card; color:$color-text;
+      }
+    }
+    .btn-submit{ @include m.button(#16a34a); width:100%; }
+  }
+}
+
+.footer{
+  color:$color-muted; text-align:center; padding:$space-2 0;
+}
