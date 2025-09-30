@@ -1,0 +1,23 @@
+/* ============================================================
+   ACTIVIDAD 2 — (c) Mixins (superficie, botón, transiciones)
+   ========================================================= */
+@use "./variables" as v;
+@use "./functions" as f;
+
+@mixin surface($bg:v.$color-surface,$r:v.$radius-md,$sh:v.$shadow-md){
+  background:$bg;border:1px solid v.$border-soft;border-radius:$r;box-shadow:$sh;
+}
+@mixin rounded($r:v.$radius-md){border-radius:$r;}
+@mixin transition($p:all,$t:.2s,$e:cubic-bezier(.2,.8,.2,1)){transition:$p $t $e;}
+
+@mixin button($bg,$fg:#fff){
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:v.$sp-3 v.$sp-5;min-width:10rem;font-weight:700;letter-spacing:.2px;
+  border:1px solid f.shade($bg,-12%);@include rounded(v.$radius-md);
+  background:linear-gradient(180deg,$bg,f.shade($bg,-8%));color:$fg;
+  @include transition(background,.16s);
+  box-shadow:0 6px 16px rgba($bg,.15);
+  &:hover{background:linear-gradient(180deg,f.shade($bg,6%),f.shade($bg,-2%));}
+  &:active{transform:translateY(1px);}
+  &:focus-visible{outline:none;box-shadow:0 0 0 f.px-to-rem(6) rgba($bg,.28);}
+}

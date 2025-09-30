@@ -1,0 +1,14 @@
+/* ============================================================
+   ACTIVIDAD 2 — (e) Anidamiento (base tipográfica/fondo claro)
+   ========================================================= */
+@use "./variables" as *;
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;font-family:$font-base;font-size:$font-size-base;line-height:$line-height-base;
+  color:$color-text;background:$color-bg;
+}
+a{color:palette(primary);text-decoration:none}
+a:hover{color:shade(palette(primary),8%)}
+img{max-width:100%;display:block}

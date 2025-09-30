@@ -1,0 +1,396 @@
+@charset "UTF-8";
+/* ============================================================
+   ACTIVIDAD 2 — (b–e) Usa variables, funciones, mixins, base, layout y componentes
+   ========================================================= */
+/* ============================================================
+   ACTIVIDAD 2 — (b) Variables (colores, tipografías, espaciados)
+   Tema claro “restaurante saludable”
+   ========================================================= */
+/* ============================================================
+   ACTIVIDAD 2 — (b–e) Usa variables, funciones, mixins, base, layout y componentes
+   ========================================================= */
+/* ============================================================
+   ACTIVIDAD 2 — (d) Funciones (cálculos y transformaciones)
+   ========================================================= */
+/* ============================================================
+   ACTIVIDAD 2 — (b–e) Usa variables, funciones, mixins, base, layout y componentes
+   ========================================================= */
+/* ============================================================
+   ACTIVIDAD 2 — (c) Mixins (superficie, botón, transiciones)
+   ========================================================= */
+/* ============================================================
+   ACTIVIDAD 2 — (b–e) Usa variables, funciones, mixins, base, layout y componentes
+   ========================================================= */
+/* ============================================================
+   ACTIVIDAD 2 — (e) Anidamiento (base tipográfica/fondo claro)
+   ========================================================= */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1f2937;
+  background: #f5f7f2;
+}
+
+a {
+  color: palette(primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: shade(palette(primary), 8%);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================================================
+   ACTIVIDAD 2 — (b–e) Usa variables, funciones, mixins, base, layout y componentes
+   ========================================================= */
+/* ============================================================
+   ACTIVIDAD 2 — (e) Anidamiento (layout, navbar, header, footer)
+   ========================================================= */
+.container, .nav .nav__inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-inline: 1rem;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 992px) {
+  .grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+/* navbar claro con sombra suave */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(31, 41, 55, 0.12);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+.nav .nav__inner {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding-block: 0.75rem;
+}
+.nav .nav__brand {
+  color: shade(#1f2937, -10%);
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+.nav .nav__links {
+  margin-left: auto;
+  display: flex;
+  gap: 0.75rem;
+}
+.nav .nav__links a {
+  color: #1f2937;
+  opacity: 0.9;
+  padding: 0.35rem 0.6rem;
+  border-radius: 10px;
+}
+.nav .nav__links a:hover {
+  opacity: 1;
+  background: shade(#ffffff, 4%);
+}
+
+/* header claro con degradado suave verde */
+.header {
+  color: #0b3d22;
+  padding: 3rem 0;
+  background: linear-gradient(135deg, shade(#16a34a, 35%) 0%, shade(#16a34a, 22%) 60%, #e7f7ea 100%);
+}
+.header .header__title {
+  margin: 0 0 0.5rem 0;
+  font-weight: 900;
+  font-size: 2.25rem;
+  letter-spacing: 0.4px;
+  color: #0a3422;
+}
+.header .header__subtitle {
+  margin: 0;
+  color: #134e35;
+}
+
+.footer {
+  color: #4b5563;
+  text-align: center;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(31, 41, 55, 0.12);
+  background: #fff;
+}
+
+/* ============================================================
+   ACTIVIDAD 2 — (b–e) Usa variables, funciones, mixins, base, layout y componentes
+   ========================================================= */
+/* ============================================================
+   ACTIVIDAD 2 — (b–e) Componentes con variables, mixins, funciones y anidado
+   ========================================================= */
+/* Hero */
+.hero {
+  padding: 3rem 0;
+  text-align: center;
+}
+.hero__title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: #0a3422;
+}
+.hero__actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Tarjetas claras con hover sutil */
+.card {
+  background: #ffffff;
+  border: 1px solid rgba(31, 41, 55, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.card:hover {
+  transform: translateY(-2px);
+}
+.card__media {
+  height: 180px;
+  background: linear-gradient(135deg, #e8f6ec, #fff);
+}
+.card__body {
+  padding: 1.5rem;
+}
+.card__title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #0f3a24;
+}
+.card__text {
+  margin: 0;
+  color: #4b5563;
+}
+
+/* Botones por paleta (primario/acento/…) */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  min-width: 10rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border: 1px solid rgb(14.7221621622, 109.0778378378, 49.52);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #16a34a, rgb(17.1481081081, 127.0518918919, 57.68));
+  color: #fff;
+  transition: background 0.16s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 6px 16px rgba(22, 163, 74, 0.15);
+}
+.btn-primary:hover {
+  background: linear-gradient(180deg, rgb(25.6389189189, 189.9610810811, 86.24), rgb(20.787027027, 154.012972973, 69.92));
+}
+.btn-primary:active {
+  transform: translateY(1px);
+}
+.btn-primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.375rem rgba(22, 163, 74, 0.28);
+}
+
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  min-width: 10rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border: 1px solid rgb(204.5330543933, 86.9046025105, 5.2669456067);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #f97316, rgb(224.4209205021, 95.3548117155, 5.7790794979));
+  color: #fff;
+  transition: background 0.16s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 6px 16px rgba(249, 115, 22, 0.15);
+}
+.btn-accent:hover {
+  background: linear-gradient(180deg, rgb(249.7682008368, 132.9246861925, 51.8317991632), rgb(248.7439330544, 109.0251046025, 12.0560669456));
+}
+.btn-accent:active {
+  transform: translateY(1px);
+}
+.btn-accent:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.375rem rgba(249, 115, 22, 0.28);
+}
+
+.btn-success {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  min-width: 10rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border: 1px solid rgb(24.9922077922, 144.8077922078, 69.0961038961);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #22c55e, rgb(27.9948051948, 162.2051948052, 77.3974025974));
+  color: #fff;
+  transition: background 0.16s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 6px 16px rgba(34, 197, 94, 0.15);
+}
+.btn-success:hover {
+  background: linear-gradient(180deg, rgb(43.161038961, 218.438961039, 107.6805194805), rgb(32.4987012987, 188.3012987013, 89.8493506494));
+}
+.btn-success:active {
+  transform: translateY(1px);
+}
+.btn-success:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.375rem rgba(34, 197, 94, 0.28);
+}
+
+.btn-warning {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  min-width: 10rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border: 1px solid rgb(187.1307086614, 120.4078740157, 7.6692913386);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #f59e0b, rgb(206.7275590551, 133.0173228346, 8.4724409449));
+  color: #fff;
+  transition: background 0.16s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.15);
+}
+.btn-warning:hover {
+  background: linear-gradient(180deg, rgb(246.2047244094, 169.6858267717, 40.3952755906), rgb(236.1228346457, 151.931496063, 9.6771653543));
+}
+.btn-warning:active {
+  transform: translateY(1px);
+}
+.btn-warning:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.375rem rgba(245, 158, 11, 0.28);
+}
+
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  min-width: 10rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border: 1px solid rgb(226.4266009852, 19.3733990148, 19.3733990148);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ef4444, rgb(235.7842364532, 30.4157635468, 30.4157635468));
+  color: #fff;
+  transition: background 0.16s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.15);
+}
+.btn-danger:hover {
+  background: linear-gradient(180deg, rgb(241.4118226601, 96.1881773399, 96.1881773399), rgb(238.1960591133, 58.6039408867, 58.6039408867));
+}
+.btn-danger:active {
+  transform: translateY(1px);
+}
+.btn-danger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 0.375rem rgba(239, 68, 68, 0.28);
+}
+
+/* Formulario claro y legible */
+.form {
+  background: #ffffff;
+  border: 1px solid rgba(31, 41, 55, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+}
+.form .field {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.form .field label {
+  color: shade(#1f2937, -15%);
+  font-size: 0.875rem;
+}
+.form .field input, .form .field textarea {
+  padding: 0.75rem;
+  background: #fff;
+  color: #1f2937;
+  border: 1px solid rgba(31, 41, 55, 0.12);
+  border-radius: 12px;
+  transition: border-color 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.form .field input::placeholder, .form .field textarea::placeholder {
+  color: shade(#4b5563, -10%);
+  opacity: 1;
+}
+.form .field input:focus, .form .field textarea:focus {
+  outline: none;
+  border-color: #16a34a;
+  box-shadow: 0 0 0 0.25rem rgba(22, 163, 74, 0.25);
+}
+.form .actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.form .actions .btn-primary, .form .actions .btn-danger {
+  justify-content: center;
+  min-width: 10rem;
+}
+
+/* Grilla del menú */
+.menu-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1160px) {
+  .menu-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/*# sourceMappingURL=main.css.map */

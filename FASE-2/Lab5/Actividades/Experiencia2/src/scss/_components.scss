@@ -1,0 +1,46 @@
+/* ============================================================
+   ACTIVIDAD 2 — (b–e) Componentes con variables, mixins, funciones y anidado
+   ========================================================= */
+@use "./variables" as *;
+@use "./functions" as f;
+@use "./mixins" as m;
+
+/* Hero */
+.hero{padding:$sp-7 0;text-align:center;
+  &__title{margin:0 0 $sp-2 0;font-size:f.px-to-rem(30);font-weight:800;color:#0a3422}
+  &__actions{margin-top:$sp-4;display:flex;gap:$sp-3;justify-content:center;flex-wrap:wrap}
+}
+
+/* Tarjetas claras con hover sutil */
+.card{@include m.surface();overflow:hidden;@include m.transition(transform,.2s);
+  &:hover{transform:translateY(-2px)}
+  &__media{height:180px;background:linear-gradient(135deg,#e8f6ec,#fff)}
+  &__body{padding:$sp-5}
+  &__title{margin:0 0 $sp-2 0;font-size:f.px-to-rem(20);font-weight:800;color:#0f3a24}
+  &__text{margin:0;color:$color-muted}
+}
+
+/* Botones por paleta (primario/acento/…) */
+@each $n,$c in $palette{ .btn-#{$n}{ @include m.button($c) } }
+
+/* Formulario claro y legible */
+.form{@include m.surface();padding:$sp-5;
+  .field{display:grid;gap:.5rem;margin-bottom:$sp-4;
+    label{color:shade($color-text,-15%);font-size:f.px-to-rem(14)}
+    input,textarea{
+      padding:$sp-3;background:#fff;color:$color-text;border:1px solid $border-soft;@include m.rounded(12px);
+      @include m.transition(border-color,.15s);
+      &::placeholder{color:shade($color-muted,-10%);opacity:1}
+      &:focus{outline:none;border-color:$color-primary;box-shadow:0 0 0 f.px-to-rem(4) rgba($color-primary,.25)}
+    }
+  }
+  .actions{display:flex;gap:$sp-3;flex-wrap:wrap;
+    .btn-primary,.btn-danger{justify-content:center;min-width:10rem}
+  }
+}
+
+/* Grilla del menú */
+.menu-grid{display:grid;gap:$sp-6;grid-template-columns:1fr;
+  @media(min-width:768px){grid-template-columns:repeat(2,1fr)}
+  @media(min-width:1160px){grid-template-columns:repeat(3,1fr)}
+}

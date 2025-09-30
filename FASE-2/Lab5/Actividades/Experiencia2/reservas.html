@@ -1,0 +1,56 @@
+<!-- =========================================================
+     ACTIVIDAD 2 — (b) Variables · (c) Mixins · (d) Funciones · (e) Anidamiento
+     Página: RESERVAS – Formulario claro y accesible
+     ======================================================= -->
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Reservas · GreenBites</title>
+<link rel="stylesheet" href="dist/css/main.css" />
+</head><body>
+<nav class="nav"><div class="nav__inner">
+  <div class="nav__brand">GreenBites</div>
+  <div class="nav__links">
+    <a href="index.html">Inicio</a><a href="menu.html">Menú</a><a href="reservas.html">Reservas</a>
+  </div></div>
+</nav>
+
+<header class="header"><div class="container">
+  <h1 class="header__title">Reservar Mesa</h1>
+  <p class="header__subtitle">Completa el formulario y confirma tu visita</p>
+</div></header>
+
+<main class="container" style="margin-top:1rem">
+  <div class="grid">
+    <section>
+      <article class="card"><div class="card__body">
+        <h3 class="card__title">Datos de la reserva</h3>
+        <p class="card__text">Te contactaremos para confirmar disponibilidad.</p>
+
+        <form class="form" onsubmit="event.preventDefault(); alert('¡Reserva enviada!');">
+          <div class="field"><label for="n">Nombre</label>
+            <input id="n" type="text" placeholder="Tu nombre" required /></div>
+          <div class="field"><label for="e">Correo</label>
+            <input id="e" type="email" placeholder="tu@mail.com" required /></div>
+          <div class="field"><label for="f">Fecha</label>
+            <input id="f" type="date" required /></div>
+          <div class="field"><label for="p">Personas</label>
+            <input id="p" type="number" min="1" max="12" value="2" /></div>
+          <div class="actions">
+            <button type="submit" class="btn-primary">Enviar</button>
+            <a class="btn-danger" href="index.html">Cancelar</a>
+          </div>
+        </form>
+      </div></article>
+    </section>
+
+    <aside>
+      <article class="card"><div class="card__body">
+        <h3 class="card__title">Horario</h3>
+        <p class="card__text">Lun–Sáb 12:00–22:00 · Dom 12:00–18:00</p>
+      </div></article>
+    </aside>
+  </div>
+</main>
+
+<footer class="footer"><div class="container"><small>&copy; 2025 · GreenBites</small></div></footer>
+</body></html>
