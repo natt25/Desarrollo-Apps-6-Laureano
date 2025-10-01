@@ -1,0 +1,65 @@
+@use "./variables" as *;
+@use "./functions" as f;
+@use "./mixins" as m;
+
+/* Base */
+:root{ scroll-behavior:smooth }
+body{
+  font-family: $font-base; font-size: $font-size-base; line-height:$line-height-base;
+  color:$brand-text; background:$brand-bg;
+}
+
+/* Navbar */
+.navbar-blur{
+  backdrop-filter: blur(8px);
+  background: #ffffffcc; /* translúcido */
+  border-bottom: 1px solid rgba(2,6,23,.06);
+}
+
+/* Hero */
+.hero{
+  padding: $sp-7 0;
+  background:
+    radial-gradient(700px 300px at 90% -10%, rgba($brand-primary,.15), transparent 60%),
+    radial-gradient(700px 300px at -10% 110%, rgba($brand-accent,.12), transparent 60%),
+    linear-gradient(180deg, #ffffff, #f1f7f1);
+  .hero-title{
+    color:$brand-dark; font-weight: 900; font-size: f.px-to-rem(40);
+  }
+  .hero-lead{ color: $brand-muted; max-width: 52ch }
+  .hero-cta .btn{ margin-right:.5rem; margin-bottom:.5rem }
+}
+
+/* Sección Features */
+.feature-card{
+  @include m.surface();
+  padding: $sp-5;
+  height: 100%;
+  h5{ color:$brand-dark; font-weight:800; margin-bottom:.5rem }
+  p{ color:$brand-muted; margin:0 }
+}
+
+/* Testimonios */
+.testi{
+  @include m.surface(#fff);
+  padding: $sp-5;
+  blockquote{ font-size: f.px-to-rem(18); color:$brand-dark; }
+  footer{ color:$brand-muted }
+}
+
+/* Newsletter */
+.newsletter{
+  @include m.surface();
+  padding:$sp-5; background:#fff;
+  input.form-control{ padding: .8rem 1rem; border-radius: $radius }
+}
+
+/* CTA Botones (utilidades generadas con mixin) */
+.btn-primary-custom{ @include m.button($brand-primary) }
+.btn-accent-custom { @include m.button($brand-accent)  }
+
+/* Footer */
+.site-footer{
+  background:#fff; border-top:1px solid rgba(2,6,23,.06);
+  color:$brand-muted;
+}

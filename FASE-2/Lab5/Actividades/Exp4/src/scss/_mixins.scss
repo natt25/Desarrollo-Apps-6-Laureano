@@ -1,0 +1,16 @@
+@use "./variables" as v;
+@use "./functions" as f;
+
+@mixin surface($bg:v.$surface){
+  background: $bg; border-radius: v.$radius; box-shadow: v.$shadow-md;
+  border: 1px solid rgba(2,6,23,.06);
+}
+@mixin button($bg, $fg:#fff){
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+  padding: .75rem 1.25rem; font-weight:700; border-radius: v.$radius;
+  color:$fg; background: linear-gradient(180deg,$bg,f.shade($bg,-10%));
+  border:1px solid f.shade($bg,-12%); transition: filter .16s ease, transform .06s ease;
+  &:hover{ filter: brightness(1.07) }
+  &:active{ transform: translateY(1px) }
+  &:focus-visible{ outline: none; box-shadow: 0 0 0 f.px-to-rem(6) rgba($bg,.25) }
+}

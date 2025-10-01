@@ -1,0 +1,12 @@
+{
+  "name": "exp04-landing-bootstrap-sass",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "sass --watch src/scss:dist/css --style=expanded --source-map",
+    "build": "sass src/scss:dist/css --style=compressed --no-error-css"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}
