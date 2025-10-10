@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>React - Configuración Rápida</title>
+
+    <!-- (1) Agregar los tres CDN: React, ReactDOM y Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Punto donde React renderizará el componente -->
+    <div id="root"></div>
+
+    <!-- (2) Definir el componente App dentro de un script Babel -->
+    <script type="text/babel">
+      // Definición del componente de clase App
+      class App extends React.Component {
+        render() {
+          return <h1>¡Hola, React desde configuración rápida!</h1>;
+        }
+      }
+
+      // (3) Renderizar el componente en el div root
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
