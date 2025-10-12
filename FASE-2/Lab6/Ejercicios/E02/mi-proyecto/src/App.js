@@ -1,75 +1,98 @@
 import React, { Component } from "react";
-import { Routes, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
 import Home from "./Home";
 import About from "./About";
 import Api from "./Api";
 import Table from "./Table";
 import Form from "./Form";
+import "./App.css";
 
 class App extends Component {
-  // Estado inicial (Práctica 4.a.1)
+  // (Exp 4.a.1) Estado inicial en componente de clase
   state = {
-    characters: [
-      { name: "Ana", job: "Desarrolladora" },
-      { name: "Luis", job: "Diseñador UX" },
-      { name: "Rosa", job: "QA Analyst" }
-    ]
+    // Catálogo básico de libros (título/autor)
+    books: [
+      { title: "La ciudad y los perros", author: "Mario Vargas Llosa" },
+      { title: "El zorro de arriba y el zorro de abajo", author: "José María Arguedas" },
+      { title: "Tradiciones peruanas", author: "Ricardo Palma" }
+    ],
   };
 
-  // Eliminar por índice (Práctica 4.a.2 y 4.a.3)
-  removeCharacter = (index) => {
-    this.setState(({ characters }) => ({
-      characters: characters.filter((_, i) => i !== index)
+  // (Exp 4.a.2 y 4.a.3) Remover por índice usando filter + setState
+  removeBook = (index) => {
+    this.setState((prev) => ({
+      books: prev.books.filter((_, i) => i !== index),
     }));
   };
 
-  // Agregar desde el formulario (Práctica 4.c.5)
-  handleSubmit = (character) => {
-    this.setState(({ characters }) => ({
-      characters: [...characters, character]
+  // (Exp 4.c.5) Agregar libro desde <Form /> con operador spread
+  handleSubmit = (book) => {
+    this.setState((prev) => ({
+      books: [...prev.books, book],
     }));
   };
 
   render() {
-    const { characters } = this.state;
+    const { books } = this.state;
 
     return (
-      <>
-        {/* NAV - Routing (Práctica 6.a.3 con Link / NavLink) */}
-        <nav style={{ padding: ".75rem 1rem", borderBottom: "1px solid #e5e7eb" }}>
-          <NavLink to="/home" className={({isActive}) => isActive ? "active" : ""}>Home</NavLink>
-          <NavLink to="/about" className={({isActive}) => isActive ? "active" : ""}>About</NavLink>
-          <NavLink to="/api" className={({isActive}) => isActive ? "active" : ""}>API</NavLink>
+      <BrowserRouter>
+        {/* (Exp 6.a.3) Navegación con NavLink sin recarga */}
+        <nav className="nav">
+          <div className="brand">BookVerse</div>
+          <div className="links">
+            <NavLink to="/" end>Inicio</NavLink>
+            <NavLink to="/catalogo">Catálogo</NavLink>
+            <NavLink to="/api">Literatura (API)</NavLink>
+            <NavLink to="/about">Acerca de</NavLink>
+          </div>
         </nav>
 
         <main className="container">
-          {/* Rutas (Práctica 6.a.2) */}
+          {/* (Exp 6.a.2) Emparejamiento de rutas */}
           <Routes>
             <Route
-              path="/home"
+              path="/"
+              element={
+                // (Exp 2/3) JSX + props.children
+                <Home>
+                  <p>
+                    Explora clásicos de la literatura peruana, agrega tus libros favoritos al
+                    catálogo y elimina los que no te interesen. Esta app integra JSX, props,
+                    estado, formularios, ciclo de vida y routing.
+                  </p>
+                </Home>
+              }
+            />
+
+            {/* (Exp 3 + 4) Tabla (props) + Form (state lifting y función como prop) */}
+            <Route
+              path="/catalogo"
               element={
                 <>
-                  <Home />
-                  <h2 className="mt">Equipo del Proyecto</h2>
-                  {/* Tabla con props + botón Delete (Prácticas 3 y 4.b) */}
+                  <h2>Catálogo de libros</h2>
                   <Table
-                    characterData={characters}
-                    removeCharacter={this.removeCharacter}
+                    // (Exp 3.b/4.b) Pasar datos y función como props
+                    data={books}
+                    removeItem={this.removeBook}
                   />
-                  <h3>Agregar nuevo miembro</h3>
-                  {/* Form controlado (Práctica 4.c) */}
+                  {/* (Exp 4.c) Form controlado (título/autor) */}
                   <Form handleSubmit={this.handleSubmit} />
                 </>
               }
             />
-            <Route path="/about" element={<About />} />
-            {/* Página que demuestra ciclo de vida + fetch (Práctica 5) */}
+
+            {/* (Exp 5) Ciclo de vida + fetch a Wikipedia */}
             <Route path="/api" element={<Api />} />
-            {/* Redirección básica al home */}
-            <Route path="*" element={<Home />} />
+
+            <Route path="/about" element={<About />} />
           </Routes>
         </main>
-      </>
+
+        <footer className="footer">
+          <small>© 2025 · BookVerse · React Practices</small>
+        </footer>
+      </BrowserRouter>
     );
   }
 }
