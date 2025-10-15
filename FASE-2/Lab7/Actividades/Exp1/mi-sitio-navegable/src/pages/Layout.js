@@ -1,12 +1,15 @@
+// src/pages/Layout.js
 import { Link, Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
     <>
       <header style={{ padding: "1rem", background: "#f0f0f0", borderBottom: "1px solid #ccc" }}>
-        <nav>
-          <Link to="/" style={{ marginRight: "1rem", textDecoration: "none" }}>Inicio</Link>
+        <nav style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+          <Link to="/" style={{ textDecoration: "none" }}>Inicio</Link>
           <Link to="/cursos" style={{ textDecoration: "none" }}>Cursos</Link>
+          <Link to="/dashboard" style={{ textDecoration: "none" }}>Dashboard (privado)</Link>
+          <Link to="/login" style={{ textDecoration: "none" }}>Login</Link>
         </nav>
       </header>
 
