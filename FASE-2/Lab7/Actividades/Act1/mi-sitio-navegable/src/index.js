@@ -2,16 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// ✅ Usa UNO de los dos estilos:
-import "./styles.css";           // Tema claro Andes
-// import "./styles.aesthetic.css"; // Tema Aesthetic (alternativa)
-
 import Layout from "./pages/Layout";
 import { HomePage } from "./pages/HomePage";
-import { ArticlesPage } from "./pages/ArticlesPage";
-import { ArticleDetailPage } from "./pages/ArticleDetailPage";
-import { AuthorPage } from "./pages/AuthorPage";
+import { CoursesPage } from "./pages/CoursesPage";
+import { CourseDetailPage } from "./pages/CourseDetailPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import "./styles.css"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,10 +16,8 @@ root.render(
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="articulos" element={<ArticlesPage />} />
-          <Route path="articulos/:id" element={<ArticleDetailPage />}>
-            <Route path="autor" element={<AuthorPage />} />
-          </Route>
+          <Route path="cursos" element={<CoursesPage />} />
+          <Route path="cursos/:courseId" element={<CourseDetailPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

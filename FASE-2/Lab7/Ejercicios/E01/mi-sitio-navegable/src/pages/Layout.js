@@ -1,4 +1,3 @@
-// src/pages/Layout.js
 import { NavLink, Outlet } from "react-router-dom";
 
 const Layout = () => {
@@ -8,7 +7,8 @@ const Layout = () => {
         <div className="container">
           <nav className="nav">
             <a href="/" className="brand" aria-label="Inicio">
-              <span className="brand-badge">CV</span> Crónicas
+              <img src="/images/logo.png" alt="Logo del sitio (textil andino)" />
+              Crónicas
             </a>
             <NavLink to="/" end>Inicio</NavLink>
             <NavLink to="/articulos">Artículos</NavLink>

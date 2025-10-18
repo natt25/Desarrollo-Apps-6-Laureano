@@ -1,4 +1,3 @@
-// src/pages/HomePage.js
 import { useNavigate } from "react-router-dom";
 import { posts } from "../data/posts";
 
@@ -12,12 +11,16 @@ export const HomePage = () => {
   };
 
   return (
-    <section className="card">
-      <h1 className="h1">Bienvenido a Crónicas de Viaje y Cultura</h1>
-      <p className="p-muted">
-        Relatos breves sobre ciudades, sabores y fiestas del altiplano y la sierra.
-      </p>
-      <button className="btn" onClick={goRandom}>Leer un Artículo Aleatorio</button>
+    <section className="hero">
+      {/* hero.jpg */}
+      <img className="hero-img" src="/images/hero.jpg" alt="Paisaje andino con montañas y cielo" />
+      <div className="hero-content">
+        <h1 className="hero-title">Crónicas de Viaje y Cultura</h1>
+        <p className="hero-sub">Relatos de ciudades, sabores y fiestas del altiplano y la sierra.</p>
+        <div className="mt-1">
+          <button className="btn" onClick={goRandom}>Leer un Artículo Aleatorio</button>
+        </div>
+      </div>
     </section>
   );
 };

@@ -1,0 +1,152 @@
+/* === Paleta: Azul suave, arena y blanco ===
+   Azul principal: #3478C2
+   Arena clara:    #FAF7F2
+   Beige suave:    #F1ECE4
+   Gris texto:     #333
+*/
+
+:root{
+  --bg: #FAF7F2;
+  --panel: #FFFFFF;
+  --accent: #3478C2;
+  --accent-light: #5B9DE5;
+  --text: #333;
+  --muted: #666;
+  --border: #E2DDD4;
+  --radius: 12px;
+  --shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+*{ box-sizing: border-box; }
+html,body,#root{ height:100%; margin:0; padding:0; }
+
+body{
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ====== Layout general ====== */
+header{
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 1rem 0;
+}
+
+nav{
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+nav a{
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  padding: 0.5rem 0.8rem;
+  border-radius: var(--radius);
+  transition: background .2s ease, color .2s ease;
+}
+
+nav a:hover{
+  background: var(--accent-light);
+  color: white;
+}
+
+footer{
+  text-align: center;
+  background: var(--panel);
+  padding: 1rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  margin-top: 2rem;
+}
+
+/* ====== Contenido ====== */
+main{
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+h1, h2, h3{
+  color: var(--accent);
+}
+
+p{
+  color: var(--text);
+}
+
+.card{
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.5rem;
+}
+
+/* ====== Botones ====== */
+button, .btn{
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background .2s ease, transform .1s ease;
+}
+
+button:hover, .btn:hover{
+  background: var(--accent-light);
+  transform: translateY(-1px);
+}
+
+button:active{
+  transform: translateY(0);
+}
+
+/* ====== Enlaces ====== */
+a{
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+
+/* ====== Listas de cursos ====== */
+ul{
+  list-style: none;
+  padding: 0;
+}
+li{
+  margin-bottom: 0.8rem;
+}
+li a{
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* ====== Página de error ====== */
+.error404{
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.3rem;
+  color: var(--muted);
+}
+
+/* ====== Responsivo ====== */
+@media (max-width: 700px){
+  nav{
+    flex-wrap: wrap;
+    gap: .7rem;
+  }
+  main{
+    margin: 1rem;
+    padding: 0.5rem;
+  }
+}
