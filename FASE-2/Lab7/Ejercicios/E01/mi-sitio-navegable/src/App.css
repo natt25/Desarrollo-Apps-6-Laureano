@@ -1,38 +1,131 @@
-.App {
-  text-align: center;
+/* ================== BookVerse — Tema Claro (Editorial) ================== */
+/* Paleta: marfil / tinta / cobre / salvia / acento quinua */
+:root{
+  --bg: #F8F7F4;              /* marfil */
+  --surface: #FFFFFF;         /* blanco */
+  --ink: #222222;             /* tinta */
+  --muted: #6B7280;           /* gris texto suave */
+  --border: #E7E5E4;          /* borde suave arena */
+  --brand: #8B5E34;           /* cobre (botones primarios) */
+  --brand-600:#774D2A;
+  --brand-200:#EBD9C8;
+  --accent:#2E8B57;           /* salvia (botón secundario) */
+  --accent-600:#247047;
+  --pill:#DDEDEA;             /* pastilla verdosa */
+  --pill-ink:#1F5C3B;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*{ box-sizing:border-box; }
+
+html, body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ---------- NAV ---------- */
+.nav{
+  position: sticky; top:0; z-index:20;
+  backdrop-filter: saturate(120%) blur(6px);
+  background: rgba(255,255,255,.9);
+  border-bottom:1px solid var(--border);
+  padding:.85rem 1rem;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.nav .brand{
+  font-family:'Merriweather', serif;
+  font-weight:900; letter-spacing:.5px;
+  color:var(--brand);
+}
+.nav .links a{
+  margin-left:1rem; padding:.4rem .6rem; border-radius:.5rem; color:var(--ink);
+  transition: background .2s, color .2s;
+}
+.nav .links a:hover{ background:var(--brand-200); }
+.nav .links a.active{ background:var(--pill); color:var(--pill-ink); }
+
+/* ---------- CONTENEDOR ---------- */
+.container{ max-width:1120px; margin:0 auto; padding:1.25rem; }
+
+/* ---------- HERO ---------- */
+.hero{
+  margin: 1.25rem auto 1rem; overflow:hidden;
+  background:linear-gradient(180deg, #FFF 0%, #FAFAF9 100%);
+  border:1px solid var(--border);
+  border-radius:20px;
+  display:grid; gap:1.25rem;
+  grid-template-columns:1.2fr .8fr;
+}
+.hero__copy{ padding:2rem 2rem 2rem 2rem; }
+.hero__eyebrow{
+  display:inline-flex; align-items:center; gap:.4rem;
+  background:var(--pill); color:var(--pill-ink);
+  border-radius:999px; padding:.25rem .6rem; font-size:.85rem; font-weight:600;
+}
+.hero h1{
+  font-family:'Merriweather', serif; font-weight:900;
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  margin:.6rem 0 .4rem;
+}
+.hero p{ color:var(--muted); margin:0 0 1rem; line-height:1.6; }
+.hero__actions{ display:flex; gap:.6rem; flex-wrap:wrap; }
+.hero__media{
+  min-height:260px; height:100%;
+  background-size:cover; background-position:center;
+  border-left:1px solid var(--border);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+/* ---------- BOTONES ---------- */
+.btn{ display:inline-flex; align-items:center; gap:.45rem; font-weight:600;
+  border:1px solid transparent; border-radius:12px; padding:.6rem .95rem; cursor:pointer;
+  text-decoration:none; transition: transform .05s ease, background .2s, border .2s;
 }
+.btn:active{ transform:translateY(1px); }
 
-.App-link {
-  color: #61dafb;
-}
+.btn-primary{ background:var(--brand); color:#fff; }
+.btn-primary:hover{ background:var(--brand-600); }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-secondary{ background:#F0FDF4; color:var(--accent-600); border-color:#DCFCE7; }
+.btn-secondary:hover{ background:#E7F8EE; }
+
+.btn-ghost{ background:transparent; border-color:var(--border); color:var(--ink); }
+.btn-ghost:hover{ background:#F6F6F5; }
+
+/* ---------- GRID DE TARJETAS ---------- */
+.grid{ display:grid; gap:1rem; grid-template-columns:1fr; }
+@media(min-width:720px){ .grid{ grid-template-columns: repeat(2, 1fr);} }
+@media(min-width:1080px){ .grid{ grid-template-columns: repeat(3, 1fr);} }
+
+.card{
+  border:1px solid var(--border); border-radius:16px; background:var(--surface);
+  overflow:hidden; box-shadow:0 1px 0 rgba(0,0,0,.02);
 }
+.card__media{ width:100%; aspect-ratio: 16/10; object-fit:cover; display:block; }
+.card__body{ padding:1rem; }
+.card__title{ margin:.2rem 0 .35rem; font-weight:700; }
+.card__text{ margin:0; color:var(--muted); }
+
+/* ---------- TABLA (Catálogo) ---------- */
+table{
+  width:100%; border-collapse: collapse; background:var(--surface);
+  border:1px solid var(--border); border-radius:14px; overflow:hidden; margin:1rem 0;
+}
+th, td{ padding:.7rem .9rem; border-top:1px solid var(--border); }
+th{ text-align:left; background:#F8FAFC; color:#111827; border-top:none; }
+
+/* ---------- FORMULARIO ---------- */
+.form{
+  margin-top:1rem; background:var(--surface); border:1px solid var(--border);
+  border-radius:14px; padding:1rem; display:grid; gap:.65rem; max-width:520px;
+}
+.form label{ font-size:.9rem; color:#374151; }
+.form input[type="text"]{
+  padding:.55rem .7rem; background:#FBFBFA; border:1px solid var(--border); border-radius:10px;
+}
+.form input[type="button"]{ composes: btn btn-primary; /* por claridad visual */ }
+
+/* ---------- UTILIDADES ---------- */
+hr{ border:none; border-top:1px solid var(--border); margin:1rem 0; }
+.footer{ text-align:center; padding:2rem 0; color:var(--muted); font-size:.95rem; }
+.titulo{ font-family:'Merriweather', serif; margin:.2rem 0; }
