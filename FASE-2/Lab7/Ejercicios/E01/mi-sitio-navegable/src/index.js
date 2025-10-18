@@ -2,10 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// ✅ Usa UNO de los dos estilos:
-import "./styles.css";           // Tema claro Andes
-// import "./styles.aesthetic.css"; // Tema Aesthetic (alternativa)
-
+import "./styles.css"; 
 import Layout from "./pages/Layout";
 import { HomePage } from "./pages/HomePage";
 import { ArticlesPage } from "./pages/ArticlesPage";
