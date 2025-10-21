@@ -7,7 +7,7 @@ import { HomePage } from "./pages/HomePage";
 import { CoursesPage } from "./pages/CoursesPage";
 import { CourseDetailPage } from "./pages/CourseDetailPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
-import "./styles.css"
+//import "./styles.css"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
