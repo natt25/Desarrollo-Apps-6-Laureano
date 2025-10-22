@@ -5,7 +5,7 @@ const Login = () => {
   const { login } = useContext(UserContext);
 
   const handleLogin = () => {
-    // Datos de ejemplo (temática CineClub)
+    // Datos de ejemplo
     login({
       name: "Natalia Mendoza",
       email: "natalia@cineclub.lat"
