@@ -1,3 +1,4 @@
+// Simula una autenticación sin backend
 let isAuthenticated = false; 
  
 // Simula una llamada a un API para iniciar sesión 
