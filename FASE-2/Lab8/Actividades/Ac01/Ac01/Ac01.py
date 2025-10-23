@@ -1,6 +1,6 @@
 import reflex as rx
 
-# --- Estado (versión compatible con Reflex) ---
+# --- Estado ---
 class EstadoContador(rx.State):
     conteo: int = 0
 
@@ -33,6 +33,6 @@ def index() -> rx.Component:
         min_h="90vh",
     )
 
-# --- App (NECESARIO para que Reflex la encuentre) ---
+# --- App---
 app = rx.App()
 app.add_page(index)
