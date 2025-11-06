@@ -5,8 +5,8 @@ var mysql = require('mysql');
 var conexion = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',     // cambia según tu instalación
-    database: 'inventariodb',
+    password: '',     
+    database: 'pasteleriadb',
     port: '3306'
 });
 
@@ -23,9 +23,11 @@ conexion.connect(function (err) {
 conexion.query('SELECT * FROM productos', function (error, resultados) {
     if (error) throw error;
 
-    console.log('=== INVENTARIO DISPONIBLE ===');
+    console.log('=== INVENTARIO DISPONIBLE DE LA PASTELERÍA ===');
     resultados.forEach(item => {
-        console.log(`ID: ${item.id} | ${item.nombre} | Cantidad: ${item.cantidad} | Precio: S/ ${item.precio}`);
+        console.log(
+            `ID: ${item.id} | ${item.nombre} | Categoría: ${item.categoria} | Precio: S/ ${item.precio} | Stock: ${item.stock}`
+        );
     });
 });
 
