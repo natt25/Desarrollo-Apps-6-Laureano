@@ -4,20 +4,19 @@ const jwt = require('jsonwebtoken');  // Librería para manejar JWT
 const app = express();
 app.use(express.json());  // Permite leer JSON en el cuerpo de la petición
 
-// Clave secreta para firmar los tokens (en un proyecto real iría en variables de entorno)
-const JWT_SECRET = 'mi_clave_super_secreta';
+// Clave secreta para firmar los tokens
+const JWT_SECRET = 'mi_clave_secreta';
 
-// Usuario "fake" para el ejemplo (no hay base de datos)
+// Usuario para el ejemplo (no hay db)
 const fakeUser = {
     id: 1,
     username: 'natty',
-    password: '123456',  // Solo para demo
+    password: '123456',
     name: 'Natty Laureano'
 };
 
 
 // Middleware para verificar el JWT en rutas protegidas
-
 function verifyToken(req, res, next) {
     const authHeader = req.headers['authorization']; // Lee cabecera Authorization
 
@@ -36,28 +35,27 @@ function verifyToken(req, res, next) {
     // Verifica firma y expiración del token
     jwt.verify(token, JWT_SECRET, (err, decoded) => {
         if (err) {
-            // Si el token ya expiró
+            // Si el token ya expiro
             if (err.name === 'TokenExpiredError') {
                 return res.status(401).json({ message: 'El token ha expirado' });
             }
-            // Cualquier otro error de validación
+            // otro error de validacion
             return res.status(401).json({ message: 'Token inválido' });
         }
 
-        // Guardamos los datos del token en la request para usarlos en la ruta
+        // Guarda datos del token en la request para usarlos en la ruta
         req.user = decoded;
-        next();  // Continúa a la ruta protegida
+        next();  // Continua a la ruta protegida
     });
 }
 
 
 // 1) ENDPOINT PÚBLICO: LOGIN (genera el JWT)
 // POST /login
-
 app.post('/login', (req, res) => {
     const { username, password } = req.body; // Datos enviados por el cliente
 
-    // Validación sencilla contra el usuario "fake"
+    // Validación contra el usuario fake
     if (username !== fakeUser.username || password !== fakeUser.password) {
         return res.status(401).json({ message: 'Credenciales inválidas' });
     }
@@ -69,8 +67,8 @@ app.post('/login', (req, res) => {
         name: fakeUser.name
     };
 
-    // Crea el token con expiración (por ejemplo, 1 minuto)
-    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1m' }); // 1m = 1 minuto
+    // Crea el token con expiración
+    const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '5m' });
 
     res.json({
         message: 'Login exitoso',
@@ -79,11 +77,9 @@ app.post('/login', (req, res) => {
 });
 
 
-// 2) ENDPOINT PROTEGIDO: PERFIL DEL USUARIO
+// 2) ENDPOINT PROTEGIDO 1: PERFIL DEL USUARIO
 // GET /api/profile
-
 app.get('/api/profile', verifyToken, (req, res) => {
-    // Aquí usamos los datos que venían en el token
     res.json({
         message: 'Perfil del usuario autenticado',
         user: req.user
@@ -91,13 +87,11 @@ app.get('/api/profile', verifyToken, (req, res) => {
 });
 
 
-// 3) OTRO ENDPOINT PROTEGIDO: LISTA DE NOTIFICACIONES
+// 3) ENDPOINT PROTEGIDO 2: LISTA DE NOTIFICACIONES
 // GET /api/notifications
-
 app.get('/api/notifications', verifyToken, (req, res) => {
-    // Simulamos notificaciones relacionadas al usuario autenticado
     const notifications = [
-        { id: 1, text: `Hola ${req.user.name}, recuerda tu presentación.` },
+        { id: 1, text: `Hola ${req.user.name}, recuerda tu tarea.` },
         { id: 2, text: 'Tienes una nueva tarea asignada.' }
     ];
 

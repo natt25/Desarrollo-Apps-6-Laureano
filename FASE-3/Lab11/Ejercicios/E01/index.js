@@ -32,8 +32,7 @@ app.get('/api/tasks/:id', (req, res) => {
 
 // POST /api/tasks  -> Crea una nueva tarea
 app.post('/api/tasks', (req, res) => {
-    const { title } = req.body;  // Ahora sí req.body tendrá "title"
-
+    const { title } = req.body;  
     if (!title) {
         return res.status(400).json({ message: 'El título es obligatorio' });
     }
