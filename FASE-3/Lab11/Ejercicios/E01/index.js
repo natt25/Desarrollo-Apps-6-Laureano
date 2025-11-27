@@ -1,8 +1,8 @@
-const express = require('express');  // Importa el framework Express
-const app = express();  // Crea la aplicación Express
+const express = require('express');
+const app = express();
 
-app.use(express.json());  // Middleware para leer JSON en el body
-app.use(express.urlencoded({ extended: true })); // Lee x-www-form-urlencoded
+app.use(express.json());  // leer JSON
+app.use(express.urlencoded({ extended: true })); // leer x-www-form-urlencoded
 
 // "DB" en memoria (array de tareas)
 let tasks = [
@@ -10,27 +10,27 @@ let tasks = [
     { id: 2, title: 'Preparar exposición', done: false }
 ];
 
-// Funcion para generar IDs incrementales
+// Funcion que genera IDs incrementales
 let nextId = 3;
 
-// GET /api/tasks  -> Lista todas las tareas
+// Lista todas las tareas
 app.get('/api/tasks', (req, res) => {
-    res.json(tasks);  // Devuelve el array completo de tareas
+    res.json(tasks);
 });
 
-// GET /api/tasks/:id  -> Obtiene una tarea específica por ID
+// Obtiene una tarea específica por ID
 app.get('/api/tasks/:id', (req, res) => {
-    const id = parseInt(req.params.id);    // Convierte el parámetro a número
+    const id = parseInt(req.params.id); 
     const task = tasks.find(t => t.id === id);
 
     if (!task) {
         return res.status(404).json({ message: 'Tarea no encontrada' });
     }
 
-    res.json(task);  // Devuelve la tarea encontrada
+    res.json(task);
 });
 
-// POST /api/tasks  -> Crea una nueva tarea
+// Crea una nueva tarea
 app.post('/api/tasks', (req, res) => {
     const { title } = req.body;  
     if (!title) {
@@ -48,10 +48,10 @@ app.post('/api/tasks', (req, res) => {
     res.status(201).json(newTask);
 });
 
-// PUT /api/tasks/:id  -> Actualiza una tarea existente
+// Actualiza una tarea existente
 app.put('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    const { title, done } = req.body;  // Datos que se desean actualizar
+    const { title, done } = req.body;
 
     const task = tasks.find(t => t.id === id);
 
@@ -59,7 +59,6 @@ app.put('/api/tasks/:id', (req, res) => {
         return res.status(404).json({ message: 'Tarea no encontrada' });
     }
 
-    // Actualiza solo si vienen valores en el body
     if (title !== undefined) {
         task.title = title;
     }
@@ -67,10 +66,10 @@ app.put('/api/tasks/:id', (req, res) => {
         task.done = done;
     }
 
-    res.json(task);  // Devuelve la tarea actualizada
+    res.json(task);
 });
 
-// DELETE /api/tasks/:id  -> Elimina una tarea por ID
+// Elimina una tarea por ID
 app.delete('/api/tasks/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const index = tasks.findIndex(t => t.id === id);
@@ -79,12 +78,12 @@ app.delete('/api/tasks/:id', (req, res) => {
         return res.status(404).json({ message: 'Tarea no encontrada' });
     }
 
-    const deleted = tasks.splice(index, 1); // Elimina la tarea del array
+    const deleted = tasks.splice(index, 1);
 
     res.json({ message: 'Tarea eliminada', task: deleted[0] });
 });
 
-// Levanta el servidor en el puerto 3000
+// Levanta el servidor
 app.listen(3000, () => {
     console.log('Servidor de tareas escuchando en http://localhost:3000');
 });
